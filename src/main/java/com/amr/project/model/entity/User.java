@@ -1,6 +1,7 @@
 package com.amr.project.model.entity;
 
 import com.amr.project.model.enums.Gender;
+import com.amr.project.model.enums.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,7 +39,7 @@ public class User implements UserDetails {
     private String lastName;
     private int age;
     private List<Address> address;
-    private List<Role> roles;
+    private Role roles;
     private Gender gender;
     private Calendar birthday;
     private Image images;

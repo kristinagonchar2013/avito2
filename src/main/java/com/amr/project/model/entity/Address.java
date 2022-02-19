@@ -14,6 +14,7 @@ public class Address {
     private Long id;
     private String cityIndex;
     private City city;
+    private Country country;
     private String street;
     private String house;
     private User user;
