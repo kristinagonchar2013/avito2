@@ -7,27 +7,27 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface MapStructMapper {
 
-    ShopDto ShopToShopDto(Shop shop);
-    Shop ShopDtoToShop(ShopDto shopDto);
+    ShopDto shopToShopDto(Shop shop);
+    Shop shopDtoToShop(ShopDto shopDto);
 
-    ItemDto ItemToItemDto(Item item);
-    Item ItemDtoToItem(ItemDto itemDto);
+    ItemDto itemToItemDto(Item item);
+    Item itemDtoToItem(ItemDto itemDto);
 
-    ReviewDto ReviewToReviewDto(Review review);
-    Review ReviewDtoToReview(ReviewDto reviewDto);
+    ReviewDto reviewToReviewDto(Review review);
+    Review reviewDtoToReview(ReviewDto reviewDto);
 
-    CategoryDto CategoryToCategoryDto(Category category);
-    Category CategoryDtoToCategory(CategoryDto categoryDto);
+    CategoryDto categoryToCategoryDto(Category category);
+    Category categoryDtoToCategory(CategoryDto categoryDto);
 
-    DiscountDto DiscountToDiscountDto(Discount discount);
-    Discount DiscountDtoToDiscount(DiscountDto discountDto);
+    DiscountDto discountToDiscountDto(Discount discount);
+    Discount discountDtoToDiscount(DiscountDto discountDto);
 
-    CityDto CityToCityDto(City city);
-    City CityDtoToCity(CityDto cityDto);
+    CityDto cityToCityDto(City city);
+    City cityDtoToCity(CityDto cityDto);
 
-    CountryDto CountryToCountryDto(Country country);
-    Country CountryDtoToCountry(CountryDto countryDto);
+    CountryDto countryToCountryDto(Country country);
+    Country countryDtoToCountry(CountryDto countryDto);
 
-    ImageDto ImageToImageDto(Image image);
-    Image ImageDtoToImage(ImageDto imageDto);
+    ImageDto imageToImageDto(Image image);
+    Image imageDtoToImage(ImageDto imageDto);
 }
