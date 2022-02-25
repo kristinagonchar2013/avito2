@@ -1,4 +1,4 @@
-package com.amr.project.webapp.config.datainitializeronstartup;
+package com.amr.project.webapp.config.datainit;
 
 import com.amr.project.dao.abstracts.ReadWriteDao;
 import com.amr.project.model.entity.Country;
