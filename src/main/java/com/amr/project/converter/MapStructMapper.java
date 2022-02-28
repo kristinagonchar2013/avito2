@@ -30,4 +30,29 @@ public interface MapStructMapper {
 
     ImageDto imageToImageDto(Image image);
     Image imageDtoToImage(ImageDto imageDto);
+
+    User userDtoToUser(UserDto userDto);
+    UserDto userToUserDto(User user);
+
+    Address addressDtoToAddress(AddressDto addressDto);
+    AddressDto addressToAddress(Address address);
+
+    CartItem cartItemDtoToCarItem(CartItemDto cartItemDto);
+    CartItemDto cartItemToCarItemDto(CartItem cartItem);
+
+    Coupon couponDtoToCoupon(CouponDto couponDto);
+    CouponDto couponToCouponDto(Coupon coupon);
+
+    Favorite favoriteDtoToFavorite(FavoriteDto favoriteDto);
+    FavoriteDto favoriteToFavoriteDto(Favorite favorite);
+
+    OrderDetail orderDetailDtoToOrderDetail(OrderDetailDto orderDetailDto);
+    OrderDetailDto orderDetailToOrderDetailDto(OrderDetail orderDetail);
+
+    Order orderDtoToOrder(OrderDto orderDto);
+    OrderDto orderToOrderDto(Order order);
+
+
+
+
 }

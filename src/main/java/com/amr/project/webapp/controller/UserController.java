@@ -1,35 +1,42 @@
 package com.amr.project.webapp.controller;
 
-
-import com.amr.project.dao.impl.UserDaoImpl;
-import com.amr.project.service.abstracts.UserService;
+import com.amr.project.converter.MapStructMapper;
+import com.amr.project.model.dto.UserDto;
+import com.amr.project.model.entity.User;
+import com.amr.project.service.abstracts.ReadWriteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class UserController extends UserDaoImpl {
+public class UserController  {
 
-    private final UserService userService;
+    private final ReadWriteService <User,Long> userServiceRead;
+    private final MapStructMapper mapper;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    @Autowired
+    public UserController(ReadWriteService userServiceRead, MapStructMapper mapper) {
+        this.userServiceRead = userServiceRead;
+        this.mapper = mapper;
     }
 
+
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
-        userService.deleteById(id);
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
+        userServiceRead.delete(userServiceRead.findById(id));
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        userService.createUser(user);
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        User user = mapper.userDtoToUser(userDto);
+        userServiceRead.persist(user);
+        return ResponseEntity.ok().body(userDto);
     }
     @PutMapping("/update")
-    public ResponseEntity<User> updateUser(@RequestBody User updatedUser) {
-        userService.updateUser(updatedUser);
-        return ResponseEntity.ok().body(updatedUser);
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) {
+        User user = mapper.userDtoToUser(userDto);
+        userServiceRead.update(user);
+        return ResponseEntity.ok().body(userDto);
     }
 }

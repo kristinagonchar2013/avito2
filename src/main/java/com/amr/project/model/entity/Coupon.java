@@ -12,6 +12,12 @@ public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private int discount;
+    private String name;
+    private int minOrder;
+    private int percentage;
+    private boolean isUsed;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
