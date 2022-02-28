@@ -2,37 +2,30 @@ package com.amr.project.model.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
 @Table(name = "shop")
 @Data
 @Builder
+@NoArgsConstructor
 public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private String name;
-    @Column
     private String email;
-    @Column
     private String phone;
-    @Column
     private String description;
-    @Column
     private int count;
-    @Column
     private double rating;
-    @Column
     private boolean isModerated = false;
-    @Column
     private boolean isModerateAccept = false;
-    @Column
     private String moderatedRejectReason;
-    @Column
     private boolean isPretendentToBeDeleted = false;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "shop")
@@ -56,6 +49,45 @@ public class Shop {
     private List<Discount> discounts;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id")
-    private Country location;
+    @JoinColumn(name = "city_id")
+    private City location;
+
+    public void addItemToShop(Item item) {
+        if (items == null) {
+            items = new LinkedList<>();
+        }
+        this.items.add(item);
+    }
+
+    public void deleteItemFromShop(Item item) {
+        if (items != null) {
+            items.remove(item);
+        }
+    }
+
+    public void addReviewToShop(Review review) {
+        if (review == null) {
+            reviews = new LinkedList<>();
+        }
+        this.reviews.add(review);
+    }
+
+    public void deleteReviewFromShop(Review review) {
+        if (reviews != null) {
+            reviews.remove(review);
+        }
+    }
+
+    public void addDiscountToShop(Discount discount) {
+        if (discount == null) {
+            discounts = new LinkedList<>();
+        }
+        discounts.add(discount);
+    }
+
+    public void deleteDiscountFromShop(Discount discount) {
+        if (discounts != null) {
+            discounts.remove(discount);
+        }
+    }
 }
