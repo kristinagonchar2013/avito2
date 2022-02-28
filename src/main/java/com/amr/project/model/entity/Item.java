@@ -15,33 +15,43 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String name;
-    @Column
+
+    @Column(name = "base_price")
     private BigDecimal basePrice;
+
     @Column
     private BigDecimal price;
+
     @Column
     private int count;
+
     @Column
     private double rating;
+
     @Column
     private String description;
+
     @Column
     private int discount;
-    @Column
+
+    @Column(name = "is_moderated")
     private boolean isModerated = false;
-    @Column
+
+    @Column(name = "moderated_reject_reason")
     private String moderatedRejectReason;
-    @Column
+
+    @Column(name = "is_pretended_to_be_deleted")
     private boolean isPretendedToBeDeleted;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "image_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_id")
     private List<Image> images;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "item")
