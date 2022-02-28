@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "item")
@@ -46,15 +47,15 @@ public class Item {
     @Column(name = "is_pretended_to_be_deleted")
     private boolean isPretendedToBeDeleted;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_id")
+    private Set<Category> categories;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id")
     private List<Image> images;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "item")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
     @JoinColumn(name = "review_id")
     private List<Review> reviews;
 
