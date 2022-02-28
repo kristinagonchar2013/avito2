@@ -1,9 +1,9 @@
 package com.amr.project.webapp.controller;
 
-import com.amr.project.converter.MapStructMapper;
+import com.amr.project.converter.ShopMapper;
 import com.amr.project.model.dto.ShopDto;
 import com.amr.project.model.entity.Shop;
-import com.amr.project.service.abstracts.ReadWriteService;
+import com.amr.project.service.abstracts.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +15,13 @@ import java.util.List;
 @RequestMapping("/shop")
 public class ShopController {
 
-    private final MapStructMapper mapper;
-    private final ReadWriteService<Shop, Long> service;
+    private final ShopMapper mapper;
+    private final ShopService service;
 
     @Autowired
-    public ShopController(MapStructMapper mapper, ReadWriteService readWriteService) {
+    public ShopController(ShopMapper mapper, ShopService service) {
         this.mapper = mapper;
-        this.service = readWriteService;
+        this.service = service;
     }
 
     @GetMapping
