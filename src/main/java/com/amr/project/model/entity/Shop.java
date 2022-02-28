@@ -2,15 +2,18 @@ package com.amr.project.model.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
 @Table(name = "shop")
 @Data
 @Builder
+@NoArgsConstructor
 public class Shop {
     private Long id;
     private String name;
@@ -29,4 +32,43 @@ public class Shop {
     private boolean isModerateAccept = false;
     private String moderatedRejectReason;
     private boolean isPretendentToBeDeleted = false;
+
+    public void addItemToShop(Item item) {
+        if (items == null) {
+            items = new LinkedList<>();
+        }
+        this.items.add(item);
+    }
+
+    public void deleteItemFromShop(Item item) {
+        if (items != null) {
+            items.remove(item);
+        }
+    }
+
+    public void addReviewToShop(Review review) {
+        if (review == null) {
+            reviews = new LinkedList<>();
+        }
+        this.reviews.add(review);
+    }
+
+    public void deleteReviewFromShop(Review review) {
+        if (reviews != null) {
+            reviews.remove(review);
+        }
+    }
+
+    public void addDiscountToShop(Discount discount) {
+        if (discount == null) {
+            discounts = new LinkedList<>();
+        }
+        discounts.add(discount);
+    }
+
+    public void deleteDiscountFromShop(Discount discount) {
+        if (discounts != null) {
+            discounts.remove(discount);
+        }
+    }
 }
