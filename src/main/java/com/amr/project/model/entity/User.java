@@ -1,6 +1,7 @@
 package com.amr.project.model.entity;
 
 import com.amr.project.model.enums.Gender;
+import com.amr.project.model.enums.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
@@ -54,7 +56,11 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        if (roles.isEmpty()) {
+            return new ArrayList<>();
+        } else {
+            return roles;
+        }
     }
 
     @Override
