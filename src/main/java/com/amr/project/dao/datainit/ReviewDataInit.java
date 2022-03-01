@@ -1,6 +1,5 @@
 package com.amr.project.dao.datainit;
 
-import com.amr.project.dao.abstracts.ItemDao;
 import com.amr.project.dao.abstracts.ReviewDao;
 import com.amr.project.model.entity.Review;
 import org.springframework.beans.factory.annotation.Autowired;
