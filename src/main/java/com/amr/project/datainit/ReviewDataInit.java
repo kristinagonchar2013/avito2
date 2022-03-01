@@ -14,12 +14,12 @@ public class ReviewDataInit {
     private final ReviewDao reviewDao;
 
     @Autowired
-    public ReviewDataInit(ReviewDao reviewDao) {
+    private ReviewDataInit(ReviewDao reviewDao) {
         this.reviewDao = reviewDao;
     }
 
     @PostConstruct
-    public void reviewDataInit() {
+    private void reviewDataInit() {
         reviewDao.persist(Review.builder().id(1L).dignity("it's ok").date(new Date()).rating(4).isModerated(true)
                 .build());
         reviewDao.persist(Review.builder().id(2L).dignity("it's not ok").date(new Date()).rating(5).isModerated(true)

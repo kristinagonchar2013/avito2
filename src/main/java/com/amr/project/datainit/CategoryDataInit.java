@@ -13,12 +13,12 @@ public class CategoryDataInit {
     private final CategoryDao categoryDao;
 
     @Autowired
-    public CategoryDataInit(CategoryDao categoryDao) {
+    private CategoryDataInit(CategoryDao categoryDao) {
         this.categoryDao = categoryDao;
     }
 
     @PostConstruct
-    public void shopDataInit() {
+    private void shopDataInit() {
         categoryDao.persist(Category.builder().id(1L).name("Bicycle").build());
         categoryDao.persist(Category.builder().id(2L).name("Smartphone").build());
         categoryDao.persist(Category.builder().id(3L).name("Table").build());

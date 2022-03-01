@@ -15,13 +15,13 @@ public class CityDataInit {
     private final CountryDao countryDao;
 
     @Autowired
-    public CityDataInit(CityDao cityDao, CountryDao countryDao) {
+    private CityDataInit(CityDao cityDao, CountryDao countryDao) {
         this.cityDao = cityDao;
         this.countryDao = countryDao;
     }
 
     @PostConstruct
-    public void cityDataInit() {
+    private void cityDataInit() {
         cityDao.persist(City.builder().id(1L).name("Moscow").country(countryDao.findById(1L)).build());
         cityDao.persist(City.builder().id(2L).name("Krasnodar").country(countryDao.findById(1L)).build());
         cityDao.persist(City.builder().id(3L).name("Yekaterinburg").country(countryDao.findById(1L)).build());
