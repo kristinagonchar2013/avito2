@@ -1,7 +1,6 @@
 package com.amr.project.dao.impl;
 
 import com.amr.project.dao.abstracts.ReadWriteDao;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
