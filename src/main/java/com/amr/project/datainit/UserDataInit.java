@@ -1,4 +1,4 @@
-package com.amr.project.webapp.config.datainit;
+package com.amr.project.datainit;
 
 import com.amr.project.dao.abstracts.ReadWriteDao;
 import com.amr.project.model.entity.User;
