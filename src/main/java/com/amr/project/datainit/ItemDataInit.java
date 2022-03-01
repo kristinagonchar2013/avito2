@@ -19,14 +19,14 @@ public class ItemDataInit {
     private final ReviewDao reviewDao;
 
     @Autowired
-    public ItemDataInit(ItemDao itemDao, CategoryDao categoryDao, ReviewDao reviewDao) {
+    private ItemDataInit(ItemDao itemDao, CategoryDao categoryDao, ReviewDao reviewDao) {
         this.itemDao = itemDao;
         this.categoryDao = categoryDao;
         this.reviewDao = reviewDao;
     }
 
     @PostConstruct
-    public void itemDataInit() {
+    private void itemDataInit() {
         itemDao.persist(Item.builder().id(1L).name("White Wooden Table").basePrice(BigDecimal.valueOf(150))
                 .price(BigDecimal.valueOf(125.6)).category(categoryDao.findById(3L)).count(19).isModerated(true)
                 .rating(4).reviews(Arrays.asList(reviewDao.findById(1L))).build());

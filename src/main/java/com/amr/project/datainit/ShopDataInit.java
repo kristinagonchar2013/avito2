@@ -18,7 +18,7 @@ public class ShopDataInit {
     private final DiscountDao discountDao;
 
     @Autowired
-    public ShopDataInit(ShopDao shopDao, CityDao cityDao, ItemDao itemDao, ReviewDao reviewDao, DiscountDao discountDao) {
+    private ShopDataInit(ShopDao shopDao, CityDao cityDao, ItemDao itemDao, ReviewDao reviewDao, DiscountDao discountDao) {
         this.shopDao = shopDao;
         this.cityDao = cityDao;
         this.itemDao = itemDao;
@@ -27,7 +27,7 @@ public class ShopDataInit {
     }
 
     @PostConstruct
-    public void shopDataInit() {
+    private void shopDataInit() {
         shopDao.persist(Shop.builder().id(1L).name("Chairs & Co").location(cityDao.findById(1L))
                 .email("chairs.co@gmail.com").phone("11111111").rating(4.44)
                 .items(Arrays.asList(itemDao.findById(7L), itemDao.findById(8L))).isModerated(true)
