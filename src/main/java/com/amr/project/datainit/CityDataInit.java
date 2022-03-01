@@ -1,4 +1,4 @@
-package com.amr.project.dao.datainit;
+package com.amr.project.datainit;
 
 import com.amr.project.dao.abstracts.CityDao;
 import com.amr.project.dao.abstracts.CountryDao;
