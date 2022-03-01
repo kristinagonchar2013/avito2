@@ -1,5 +1,6 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Discount {
     //TODO скидка для постоянного покупателя
     private Long id;

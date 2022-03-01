@@ -1,5 +1,6 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.List;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Item {
     private Long id;
     private String name;
@@ -27,7 +29,7 @@ public class Item {
     private String description;
     private int discount;
     private Shop shop;
-    private boolean isModerated = false;
+    private boolean isModerated;
     private String moderatedRejectReason;
     private boolean isPretendedToBeDeleted;
 }

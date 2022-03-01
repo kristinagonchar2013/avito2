@@ -11,10 +11,7 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode(exclude = "price")
 public class OrderDetail {
-    //TODO когда будете рисовать БД, подумайте нужен ли этот класс и возможно его лучше совместить с ордером
 
     private BigDecimal total;
     private String currency;

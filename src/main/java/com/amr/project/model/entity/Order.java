@@ -1,8 +1,10 @@
 package com.amr.project.model.entity;
 
 import com.amr.project.model.enums.Status;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,6 +18,8 @@ import java.util.List;
 @Table(name = "orders")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order {
     private Long id;
     private List<Item> items;
