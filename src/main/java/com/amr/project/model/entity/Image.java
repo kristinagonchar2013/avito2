@@ -1,8 +1,10 @@
 package com.amr.project.model.entity;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,13 +12,12 @@ import javax.persistence.*;
 @Table(name = "image")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Image {
-    //TODO картинки будем хранить в БД (для удобства, хотя это и плохая практика)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private byte[] picture;
-    @Column
-    private Boolean isMain = false;
+    private Boolean isMain;
 }
