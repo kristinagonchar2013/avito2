@@ -2,6 +2,7 @@ package com.amr.project.model.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Table(name = "country")
 @Data
 @Builder
+@NoArgsConstructor
 public class Country {
 
     @Id

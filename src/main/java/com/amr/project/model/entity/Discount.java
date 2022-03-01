@@ -2,6 +2,7 @@ package com.amr.project.model.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Table(name = "discount")
 @Data
 @Builder
+@NoArgsConstructor
 public class Discount {
     //TODO скидка для постоянного покупателя
     @Id
