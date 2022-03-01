@@ -29,8 +29,4 @@ public class Chat {
         this.members = members;
         this.hash = members.stream().map(User::hashCode).mapToLong(e -> e).sum();
     }
-
-    public Chat() {
-
-    }
 }

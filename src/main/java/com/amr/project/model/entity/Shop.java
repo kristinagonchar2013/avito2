@@ -58,9 +58,4 @@ public class Shop {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
     private Country location;
-
-
-    public Shop() {
-
-    }
 }

@@ -44,8 +44,4 @@ public class Order {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orderDetail_id")
     private OrderDetail orderDetail;
-
-    public Order() {
-
-    }
 }

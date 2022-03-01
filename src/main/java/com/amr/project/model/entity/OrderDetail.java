@@ -49,7 +49,4 @@ public class OrderDetail {
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private Order order;
-
-
-
 }

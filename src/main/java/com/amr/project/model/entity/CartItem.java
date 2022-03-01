@@ -11,7 +11,6 @@ import java.util.List;
 @Data
 @Builder
 public class CartItem {
-    //TODO товары в корзине, продумать какие поля им нужны, нужны-ли связи?
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,7 +27,4 @@ public class CartItem {
     @JoinColumn(name = "order_id")
     private List <Order> orders;
 
-    public CartItem() {
-
-    }
 }
