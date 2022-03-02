@@ -4,9 +4,8 @@ import com.amr.project.converter.ItemMapper;
 import com.amr.project.model.dto.ItemDto;
 import com.amr.project.model.entity.Item;
 import com.amr.project.model.entity.Shop;
-import com.amr.project.service.abstracts.ReadWriteService;
-import com.amr.project.service.impl.ItemService;
-import com.amr.project.service.impl.ShopService;
+import com.amr.project.service.abstracts.ItemService;
+import com.amr.project.service.abstracts.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,9 +36,10 @@ public class CRUDItemInShopRESTController {
         return ResponseEntity.ok(itemDto);
     }
 
-    @PutMapping("/item")
+    @PutMapping("/item/{id}")
     public ResponseEntity<ItemDto> updateItemInShop(@Valid @RequestBody ItemDto itemDto, @PathVariable Long id) {
         Item item = itemMapper.itemDtoToItem(itemDto);
+        item.setId(id);
         itemService.update(item);
         return ResponseEntity.ok(itemDto);
     }
