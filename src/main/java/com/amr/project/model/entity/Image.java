@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Data
 @Builder
 public class Image {
-    //TODO картинки будем хранить в БД (для удобства, хотя это и плохая практика)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +22,7 @@ public class Image {
     @Column
     private byte[] picture;
 
-    @Column
+    @Column(name = "is_main")
     private Boolean isMain = false;
 
     public Image() {
