@@ -101,7 +101,7 @@ public class User implements UserDetails {
     @JoinColumn(name = "orders_id")
     private List<Order> orders;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     @JoinColumn(name = "review_id")
     private List<Review> reviews;
 

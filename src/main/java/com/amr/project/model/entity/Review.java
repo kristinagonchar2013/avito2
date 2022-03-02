@@ -3,7 +3,15 @@ package com.amr.project.model.entity;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
@@ -14,21 +22,29 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
-    private String dignity; //плюсы
+    private String dignity;
+
     @Column
-    private String flaw; //минусы
+    private String flaw;
+
     @Column
     private String text;
+
     @Column
     private Date date;
+
     @Column
     private int rating;
-    @Column
+
+    @Column(name = "is_moderated")
     private boolean isModerated = false;
-    @Column
+
+    @Column(name = "is_moderate_accept")
     private boolean isModerateAccept = false;
-    @Column
+
+    @Column(name = "moderate_reject_reason")
     private String moderatedRejectReason;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,8 +58,6 @@ public class Review {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shop_id")
     private Shop shop;
-
-
 
     public Review() {
 

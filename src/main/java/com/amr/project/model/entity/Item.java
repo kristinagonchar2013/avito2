@@ -55,7 +55,7 @@ public class Item {
     @JoinColumn(name = "item_id")
     private List<Image> images;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "item")
     @JoinColumn(name = "review_id")
     private List<Review> reviews;
 

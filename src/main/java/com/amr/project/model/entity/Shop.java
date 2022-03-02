@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.List;
@@ -41,6 +42,7 @@ public class Shop {
 
     private List<Item> items;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "shop")
     private List<Review> reviews;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -66,7 +68,7 @@ public class Shop {
     @Column(name = "moderated_reject_reason")
     private String moderatedRejectReason;
 
-    @Column(name = "is_pretendent_to_be_deleted")
+    @Column(name = "is_pretendent_be_deleted")
     private boolean isPretendentToBeDeleted = false;
 
     public Shop() {
