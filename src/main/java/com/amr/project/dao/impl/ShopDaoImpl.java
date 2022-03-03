@@ -11,6 +11,6 @@ public class ShopDaoImpl extends ReadWriteDaoImpl<Shop, Long> implements ShopDao
 
     @Override
     public List<Shop> findShops(String keyword) {
-        return em.createQuery("SELECT s FROM Shop s WHERE s.name LIKE CONCAT('%', :keyword, '%')", Shop.class).setParameter("keyword", keyword).getResultList();
+        return em.createQuery("SELECT s FROM Shop s WHERE s.name LIKE CONCAT('%', :keyword, '%') ORDER BY s.rating DESC", Shop.class).setParameter("keyword", keyword).getResultList();
     }
 }
