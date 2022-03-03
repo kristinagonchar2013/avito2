@@ -1,19 +1,9 @@
-package com.amr.project.model.entity;
+package com.amr.project.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-@Table
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class OrderDetail {
-    @Id
+public class OrderDetailDto {
+
     private Long id;
     private BigDecimal total;
     private String currency;
@@ -28,7 +18,4 @@ public class OrderDetail {
     private String buyerName;
     private String buyerPhone;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    private Order order;
 }

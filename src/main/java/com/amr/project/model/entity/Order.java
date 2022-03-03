@@ -1,13 +1,12 @@
 package com.amr.project.model.entity;
 
 import com.amr.project.model.enums.Status;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
@@ -16,15 +15,37 @@ import java.util.List;
 @Table(name = "orders")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private List<Item> items;
+    @Column
     private Calendar date;
     @Enumerated(EnumType.ORDINAL)
+    @Column
     private Status status;
-    private Address address;
+    @Column
     private BigDecimal total;
-    private User user;
+    @Column
     private String buyerName;
+    @Column
     private String buyerPhone;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private List<Item> items;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderDetail_id")
+    private OrderDetail orderDetail;
 }
