@@ -109,9 +109,9 @@ public class User implements UserDetails {
     @JoinColumn(name = "shop_id")
     private List<Shop> shops;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "favorite_id")
-    private List<Favorite> favorite;
+    private Favorite favorite;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @JoinColumn(name = "discount_id")
