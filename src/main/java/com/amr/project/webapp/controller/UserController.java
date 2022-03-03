@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getOne(@PathVariable Long id) {
         User user = userService.findById(id);
-        return ResponseEntity.ok(userMapper.userTouserDto(user));
+        return ResponseEntity.ok(userMapper.userToUserDto(user));
     }
 
     @PostMapping
@@ -38,15 +38,19 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateShop(@RequestBody UserDto userDto, @PathVariable Long id) {
         User user = userMapper.userDtoToUser(userDto);
-        shop.setId(id);
-        //
-        service.update(shop);
-        return ResponseEntity.status(HttpStatus.OK).body(mapper.shopToShopDto(shop));
+        user.setId(id);
+        // такую проверку пароля??
+        if (user.getPassword().isEmpty()) {
+            user.setPassword(userService.findById(id).getPassword());
+        }
+
+        userService.update(user);
+        return ResponseEntity.status(HttpStatus.OK).body(userMapper.userToUserDto(user));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteShopById(@PathVariable Long id) {
-        service.delete(service.findById(id));
+        userService.delete(userService.findById(id));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
