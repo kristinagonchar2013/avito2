@@ -1,6 +1,7 @@
 package com.amr.project.model.entity;
 
 import com.amr.project.model.enums.Gender;
+import com.amr.project.model.enums.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,7 +10,9 @@ import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
@@ -17,7 +20,7 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 @Data
-//@Builder
+@Builder
 @NoArgsConstructor
 @ToString(of = {"id", "email", "username", "password", "phone", "firstName", "lastName", "age", "gender"})
 @EqualsAndHashCode(of = {"id", "email", "username"})
@@ -29,27 +32,17 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private String email;
-    @Column
     private String username;
-    @Column
     private String password;
-    @Column
     private boolean activate;
-    @Column
     private String activationCode;
-    @Column
     private String phone;
-    @Column
     private String firstName;
-    @Column
     private String lastName;
-    @Column
     private int age;
     @Column
     private Gender gender;
-    @Column
     private Calendar birthday;
     @Column
     private boolean isUsingTwoFactorAuth;
@@ -308,7 +301,11 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        if (roles.isEmpty()) {
+            return new ArrayList<>();
+        } else {
+            return roles;
+        }
     }
 
     @Override
