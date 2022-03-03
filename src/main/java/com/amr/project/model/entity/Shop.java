@@ -17,7 +17,7 @@ public class Shop {
     private String email;
     private String phone;
     private String description;
-    private City location;
+    private Country location;
     private List<Item> items;
     private List<Review> reviews;
     private Image logo;
