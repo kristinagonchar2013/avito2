@@ -3,8 +3,7 @@ package com.amr.project.model.entity;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -13,19 +12,43 @@ import java.util.List;
 @Data
 @Builder
 public class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String name;
+    @Column
     private BigDecimal basePrice;
+    @Column
     private BigDecimal price;
-    private Category category;
-    private List<Image> images;
-    private List<Review> reviews;
+    @Column
     private int count;
+    @Column
     private double rating;
+    @Column
     private String description;
+    @Column
     private int discount;
-    private Shop shop;
+    @Column
     private boolean isModerated = false;
+    @Column
     private String moderatedRejectReason;
+    @Column
     private boolean isPretendedToBeDeleted;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id")
+    private List<Image> images;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "item")
+    @JoinColumn(name = "review_id")
+    private List<Review> reviews;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
 }
