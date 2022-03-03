@@ -1,4 +1,4 @@
-package com.amr.project.webapp.config.security;
+package com.amr.project.service.abstracts;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
