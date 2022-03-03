@@ -1,7 +1,9 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
 @Table(name = "city")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class City {
 
     @Id
