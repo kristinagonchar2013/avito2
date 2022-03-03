@@ -21,9 +21,4 @@ public class Country {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     private List <City> city;
-
-
-    public Country() {
-
-    }
 }

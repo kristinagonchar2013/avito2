@@ -19,8 +19,4 @@ public class Image {
     private byte[] picture;
     @Column
     private Boolean isMain = false;
-
-    public Image() {
-
-    }
 }

@@ -28,8 +28,4 @@ public class Message {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User from;
-
-    public Message() {
-
-    }
 }

@@ -25,8 +25,4 @@ public class City {
     @OneToMany(mappedBy = "city")
     @JoinColumn(name = "address_id")
     private List<Address>addresses;
-
-    public City() {
-
-    }
 }

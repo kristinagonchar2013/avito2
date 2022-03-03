@@ -3,8 +3,7 @@ package com.amr.project.model.entity;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,22 +11,28 @@ import java.util.List;
 @Data
 @Builder
 public class Shop {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String name;
+    @Column
     private String email;
+    @Column
     private String phone;
+    @Column
     private String description;
-    private Country location;
-    private List<Item> items;
-    private List<Review> reviews;
-    private Image logo;
+    @Column
     private int count;
+    @Column
     private double rating;
-    private User user;
-    private List<Discount> discounts;
+    @Column
     private boolean isModerated = false;
+    @Column
     private boolean isModerateAccept = false;
+    @Column
     private String moderatedRejectReason;
+    @Column
     private boolean isPretendentToBeDeleted = false;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "shop")
@@ -53,9 +58,12 @@ public class Shop {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
     private Country location;
+<<<<<<< HEAD
 
 
     public Shop() {
 
     }
+=======
+>>>>>>> R-1
 }
