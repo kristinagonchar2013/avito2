@@ -2,11 +2,7 @@ package com.amr.project.model.entity;
 
 import com.amr.project.model.enums.Gender;
 import com.amr.project.model.enums.Role;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,6 +18,7 @@ import java.util.List;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString(of = {"id", "email", "username", "password", "phone", "firstName", "lastName", "age", "gender"})
 @EqualsAndHashCode(of = {"id", "email", "username"})
 public class User implements UserDetails {
