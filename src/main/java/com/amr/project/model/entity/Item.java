@@ -1,7 +1,9 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,30 +24,20 @@ import java.util.Set;
 @Table(name = "item")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column
     private String name;
 
     @Column(name = "base_price")
     private BigDecimal basePrice;
-
-    @Column
     private BigDecimal price;
-
-    @Column
     private int count;
-
-    @Column
     private double rating;
-
-    @Column
     private String description;
-
-    @Column
     private int discount;
 
     @Column(name = "is_moderated")
@@ -57,9 +49,8 @@ public class Item {
     @Column(name = "is_pretended_to_be_deleted")
     private boolean isPretendedToBeDeleted;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_id")
-    private Set<Category> categories;
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, mappedBy = "item") //добавила каскад
+    private Set<Category> categories; //каскад на все операции убрала, не надо чтоб удалялись все категории
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id")
@@ -73,7 +64,4 @@ public class Item {
     @JoinColumn(name = "shop_id")
     private Shop shop;
 
-    public Item() {
-
-    }
 }

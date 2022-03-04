@@ -1,8 +1,10 @@
 package com.amr.project.model.entity;
 
 import com.amr.project.model.enums.Status;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,24 +15,21 @@ import java.util.List;
 @Table(name = "orders")
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private Calendar date;
-    @Enumerated(EnumType.ORDINAL)
-    @Column
+    @Enumerated(EnumType.STRING) //статус будет в виде стринг
     private Status status;
-    @Column
     private BigDecimal total;
-    @Column
     private String buyerName;
-    @Column
     private String buyerPhone;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)  //добавила каскад
+    @JoinColumn(name = "item_id") //связь однонаправленная, оставляем как есть
     private List<Item> items;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -41,11 +40,6 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderDetail_id")
-    private OrderDetail orderDetail;
-
-    public Order() {
-
-    }
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order") //добавила каскад
+    private OrderDetail orderDetail; //при правильной связи - это поле можно удалить, айди будут одинаковые
 }

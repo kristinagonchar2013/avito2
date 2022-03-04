@@ -1,7 +1,9 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,31 +20,23 @@ import java.util.Date;
 @Table(name = "review")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column
     private String dignity;
-
-    @Column
     private String flaw;
-
-    @Column
     private String text;
-
-    @Column
     private Date date;
-
-    @Column
     private int rating;
 
     @Column(name = "is_moderated")
-    private boolean isModerated = false;
+    private boolean isModerated; //присвоение false не нужно, любое булевское значение по умолчанию - false
 
     @Column(name = "is_moderate_accept")
-    private boolean isModerateAccept = false;
+    private boolean isModerateAccept;  //присвоение false не нужно, любое булевское значение по умолчанию - false
 
     @Column(name = "moderate_reject_reason")
     private String moderatedRejectReason;
@@ -58,8 +52,4 @@ public class Review {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shop_id")
     private Shop shop;
-
-    public Review() {
-
-    }
 }

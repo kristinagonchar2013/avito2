@@ -1,120 +1,73 @@
 package com.amr.project.model.entity;
 
 import com.amr.project.model.enums.Gender;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.amr.project.model.enums.Role;
+import lombok.*;
+import org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.List;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "user")
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString(of = {"id", "email", "username", "password", "phone", "firstName", "lastName", "age", "gender"})
 @EqualsAndHashCode(of = {"id", "email", "username"})
 public class User implements UserDetails {
-    //TODO надо продумать юзера, слишком много у него связей,
-    // нужны-ли они, возможно где-то вместо связи с ентити использовать id,
-    // иначе есть вероятность попасть в констрейнты и не отстроить нормальную структуру
-    // для взаимодействия с БД
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column
+    private Long id; //удалила аннотацию column
     private String email;
-
-    @Column
     private String username;
-
-    @Column
     private String password;
-
-    @Column
     private boolean activate;
-
-    @Column
     private String activationCode;
-
-    @Column
     private String phone;
-
-    @Column
     private String firstName;
-
-    @Column
     private String lastName;
-
-    @Column
+    @Enumerated(value = EnumType.STRING) //поставила аннотацию enumerated
+    private Role role;
     private int age;
-
-    @Column
+    @Enumerated(value = EnumType.STRING) //поставила аннотацию enumerated
     private Gender gender;
-
-    @Column
     private Calendar birthday;
-
-    @Column
     private boolean isUsingTwoFactorAuth;
-
-    @Column
     private String secret;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @JoinColumn(name = "address_id")
-    private List<Address> address;
+    //все joinColumn удалила
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @JoinColumn(name = "cartItem_id")
-    private List<CartItem> cart;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user") //добавила каскад
+    private List<Address> address; //удалила аннотацию joinColumn
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private CartItem cart;
+//    при правильной связи это поле даже не нужно, у главной сущности - корзины будет храниться айди юзера
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
     private Image images;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @JoinColumn(name = "coupon_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user")  //добавила каскад
     private List<Coupon> coupons;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @JoinColumn(name = "orders_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user") //добавила каскад
     private List<Order> orders;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
-    @JoinColumn(name = "review_id")
     private List<Review> reviews;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @JoinColumn(name = "shop_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user") //добавила каскад
     private List<Shop> shops;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "favorite_id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user") //добавила каскад
     private Favorite favorite;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @JoinColumn(name = "discount_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user") //добавила каскад
     private List<Discount> discounts;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -126,7 +79,11 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        ArrayList<Role> roles = new ArrayList<>();
+        if (role != null) {
+            roles.add(role);
+        }
+        return roles; //добавила метод для списка ролей
     }
 
     @Override

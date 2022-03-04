@@ -1,63 +1,30 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "shop")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Shop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column
     private String name;
-
-    @Column
     private String email;
-
-    @Column
     private String phone;
-
-    @Column
     private String description;
-
-    private Country location;
-
-    private List<Item> items;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "shop")
-    private List<Review> reviews;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_id")
-    private Image logo;
-
-    @Column
     private int count;
-
-    @Column
     private double rating;
-
-    private User user;
-
-    private List<Discount> discounts;
 
     @Column(name = "is_moderated")
     private boolean isModerated = false;
@@ -71,7 +38,24 @@ public class Shop {
     @Column(name = "is_pretendent_be_deleted")
     private boolean isPretendentToBeDeleted = false;
 
-    public Shop() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id") //добавила joinColumn и manyToMany
+    private City location;
 
-    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop") //добавила аннотацию
+    private List<Item> items;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "shop")
+    private List<Review> reviews;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private Image logo;
+
+    @ManyToOne(fetch = FetchType.LAZY) //добавила аннотацию
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop") //добавила аннотацию, однонаправленная связь
+    private List<Discount> discounts;
 }

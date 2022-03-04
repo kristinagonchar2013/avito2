@@ -1,21 +1,24 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "coupon")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Coupon {
-    //TODO разовый скидочный купон для покупателя, добавить поля
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int discount;
     private String name;
     private int minOrder;
-    private int percentage;
+    private int discount;
+    //private int percentage; это поле не нужно, уже есть discount, это одно и тоже
     private boolean isUsed;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -1,7 +1,9 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +21,8 @@ import java.util.List;
 @Table(name = "chat")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,9 +40,5 @@ public class Chat {
     public Chat(List<User> members) {
         this.members = members;
         this.hash = members.stream().map(User::hashCode).mapToLong(e -> e).sum();
-    }
-
-    public Chat() {
-
     }
 }

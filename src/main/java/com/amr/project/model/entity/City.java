@@ -1,7 +1,9 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +22,8 @@ import java.util.List;
 @Table(name = "city")
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class City {
 
     @Id
@@ -35,8 +39,4 @@ public class City {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "city")
     private List<Address> addresses;
-
-    public City() {
-
-    }
 }

@@ -1,7 +1,9 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +19,8 @@ import javax.persistence.Table;
 @Table(name = "address")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +28,7 @@ public class Address {
 
     @Column(name = "city_index")
     private String cityIndex;
-
-    @Column
-    private String street;
-
-    @Column
+    private String street; //удалила аннотацию column
     private String house;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,8 +38,4 @@ public class Address {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
-    public Address() {
-
-    }
 }
