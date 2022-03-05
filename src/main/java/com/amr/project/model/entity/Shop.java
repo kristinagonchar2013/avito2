@@ -29,6 +29,7 @@ public class Shop {
     private boolean isModerateAccept;
     private String moderatedRejectReason;
     private boolean isPretendentToBeDeleted;
+    private String status; // approved vs notApproved
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "shop")
     @JoinColumn(name = "item_id")
