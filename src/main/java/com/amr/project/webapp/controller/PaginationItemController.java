@@ -3,7 +3,7 @@ package com.amr.project.webapp.controller;
 import com.amr.project.converter.ItemMapper;
 import com.amr.project.model.dto.ItemDto;
 import com.amr.project.model.entity.Item;
-import com.amr.project.service.paginationService.PaginationItemService;
+import com.amr.project.service.abstracts.PaginationItemService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class PaginationItemController {
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "4") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy) {
-        List<Item> list = service.getAllItem(pageNo, pageSize, sortBy);
+        List<Item> list = service.getAllItems(pageNo, pageSize, sortBy);
         return new ResponseEntity<List<ItemDto>>(mapper.allItemsToItemsDto(list), new HttpHeaders(), HttpStatus.OK);
     }
 }
