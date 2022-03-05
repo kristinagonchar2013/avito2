@@ -39,11 +39,9 @@ public class UserController {
     public ResponseEntity<UserDto> updateShop(@RequestBody UserDto userDto, @PathVariable Long id) {
         User user = userMapper.userDtoToUser(userDto);
         user.setId(id);
-        // такую проверку пароля??
         if (user.getPassword().isEmpty()) {
             user.setPassword(userService.findById(id).getPassword());
         }
-
         userService.update(user);
         return ResponseEntity.status(HttpStatus.OK).body(userMapper.userToUserDto(user));
     }
