@@ -24,4 +24,7 @@ public class Coupon {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    //TODO длобавить ассоциацию с магазином выдавшем купон
+    //TODO ввести наименования колонок для полей с составным именем
 }

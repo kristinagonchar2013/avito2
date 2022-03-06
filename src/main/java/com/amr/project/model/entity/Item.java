@@ -1,5 +1,6 @@
 package com.amr.project.model.entity;
 
+import com.sun.xml.bind.v2.TODO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -49,6 +50,7 @@ public class Item {
     @Column(name = "is_pretended_to_be_deleted")
     private boolean isPretendedToBeDeleted;
 
+    //TODO добавить @JoinColumn(name ="item_id") для unidirectional. Убрать  mappedBy = "item"
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, mappedBy = "item") //добавила каскад
     private Set<Category> categories; //каскад на все операции убрала, не надо чтоб удалялись все категории
 
@@ -56,6 +58,7 @@ public class Item {
     @JoinColumn(name = "item_id")
     private List<Image> images;
 
+    //TODO убрать     @JoinColumn(name = "review_id") т.к. bidirectional
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "item")
     @JoinColumn(name = "review_id")
     private List<Review> reviews;

@@ -23,7 +23,7 @@ public class Shop {
     private String email;
     private String phone;
     private String description;
-    private int count;
+    private int count; //TODO что это за поле?
     private double rating;
 
     @Column(name = "is_moderated")
@@ -38,8 +38,10 @@ public class Shop {
     @Column(name = "is_pretendent_be_deleted")
     private boolean isPretendentToBeDeleted = false;
 
+    //TODO у магазина должен быть адрес по условию Adress. Зачем здесь город?
+    // может сделать двунаправленную связь ManyToOne?
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "city_id") //добавила joinColumn и manyToMany
+    @JoinColumn(name = "city_id") //добавила joinColumn и manyToMany //TODO где ManyToMany?
     private City location;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop") //добавила аннотацию
@@ -58,4 +60,8 @@ public class Shop {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop") //добавила аннотацию, однонаправленная связь
     private List<Discount> discounts;
+
+    //TODO добавить ассоциацию @OneToMany с купонами. Их тоже магазин выдаёт
+
+    //TODO добавить ассоциацию с CartItem. См. RedMe
 }

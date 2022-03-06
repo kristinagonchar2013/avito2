@@ -24,4 +24,7 @@ public class Discount {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    //TODO Сделать ассоциацию с магазином, который выдал скидку
+    //TODO Нужно ли поле fixedDiscount, которое есть в документации
 }

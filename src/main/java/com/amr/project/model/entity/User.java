@@ -44,10 +44,12 @@ public class User implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user") //добавила каскад
     private List<Address> address; //удалила аннотацию joinColumn
 
+    //TODO OneToMany если у юзер выбирает несколько товаров в корзину?
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private CartItem cart;
 //    при правильной связи это поле даже не нужно, у главной сущности - корзины будет храниться айди юзера
 
+    //TODO переименовать images в image
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
     private Image images;
