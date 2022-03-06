@@ -33,10 +33,10 @@ public class Review {
     private int rating;
 
     @Column(name = "is_moderated")
-    private boolean isModerated; //присвоение false не нужно, любое булевское значение по умолчанию - false
+    private boolean isModerated;
 
     @Column(name = "is_moderate_accept")
-    private boolean isModerateAccept;  //присвоение false не нужно, любое булевское значение по умолчанию - false
+    private boolean isModerateAccept;
 
     @Column(name = "moderate_reject_reason")
     private String moderatedRejectReason;

@@ -32,8 +32,8 @@ public class OrderDetail {
     private String buyerPhone;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @MapsId // аннотация, для подгружения айдишника юзера
-    @JoinColumn(name = "id") //аннотация чтоб айди сущностей совпадали
+    @MapsId
+    @JoinColumn(name = "id")
     private Order order;
 
 }

@@ -1,9 +1,13 @@
 package com.amr.project.webapp.controller;
 
+import com.amr.project.converter.ItemMapper;
+import com.amr.project.model.dto.ItemDto;
 import com.amr.project.model.entity.Item;
 import com.amr.project.model.entity.Shop;
-import com.amr.project.service.abstracts.ReadWriteService;
+import com.amr.project.service.abstracts.ItemService;
+import com.amr.project.service.abstracts.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,35 +16,38 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/shop")
 public class CRUDItemInShopRESTController {
-
-    private final ReadWriteService shopService;
-    private final Converter converter;
+    private final ShopService shopService;
+    private final ItemService itemService;
+    private final ItemMapper itemMapper;
 
     @Autowired
-    public CRUDItemInShopRESTController(ReadWriteService shopService, Converter converter) {
+    public CRUDItemInShopRESTController(ShopService shopService, ItemService itemService, ItemMapper itemMapper) {
+        this.itemService = itemService;
         this.shopService = shopService;
-        this.converter = converter;
+        this.itemMapper = itemMapper;
     }
 
     @PostMapping("/{id}/item")
     public ResponseEntity<ItemDto> addItemInShop(@Valid @RequestBody ItemDto itemDto, @PathVariable Long id) {
-        Item item = converter.itemDtoToItem(itemDto);
+        Item item = itemMapper.itemDtoToItem(itemDto);
         Shop shop = (Shop) shopService.findById(id);
-        shop.addItem(item);
+        shop.getItems().add(item);
         shopService.persist(shop);
         return ResponseEntity.ok(itemDto);
     }
 
-    @PutMapping("/item")
+    @PutMapping("/item/{id}")
     public ResponseEntity<ItemDto> updateItemInShop(@Valid @RequestBody ItemDto itemDto, @PathVariable Long id) {
-        Item item = converter.convetToItem(itemDto);
-
-        return ResponseEntity.ok(shopService.update(item));
+        Item item = itemMapper.itemDtoToItem(itemDto);
+        item.setId(id);
+        itemService.update(item);
+        return ResponseEntity.ok(itemDto);
     }
 
     @DeleteMapping("/item/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-
+        Item item = (Item) itemService.findById(id);
+        itemService.delete(item);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

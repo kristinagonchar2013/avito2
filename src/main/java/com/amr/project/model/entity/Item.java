@@ -1,6 +1,5 @@
 package com.amr.project.model.entity;
 
-import com.sun.xml.bind.v2.TODO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,7 +41,7 @@ public class Item {
     private int discount;
 
     @Column(name = "is_moderated")
-    private boolean isModerated = false;
+    private boolean isModerated;
 
     @Column(name = "moderated_reject_reason")
     private String moderatedRejectReason;

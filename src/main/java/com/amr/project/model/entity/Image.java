@@ -25,5 +25,5 @@ public class Image {
     private byte[] picture;
 
     @Column(name = "is_main")
-    private Boolean isMain = false;
+    private Boolean isMain;
 }

@@ -29,8 +29,6 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)

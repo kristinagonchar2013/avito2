@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -26,16 +27,16 @@ public class Shop {
     private double rating;
 
     @Column(name = "is_moderated")
-    private boolean isModerated = false;
+    private boolean isModerated;
 
     @Column(name = "is_moderate_accept")
-    private boolean isModerateAccept = false;
+    private boolean isModerateAccept;
 
     @Column(name = "moderated_reject_reason")
     private String moderatedRejectReason;
 
     @Column(name = "is_pretendent_be_deleted")
-    private boolean isPretendentToBeDeleted = false;
+    private boolean isPretendentToBeDeleted;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "city_id")
@@ -60,4 +61,43 @@ public class Shop {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "shop")
     private List<Coupon> coupons;
+
+    public void addItemToShop(Item item) {
+        if (items == null) {
+            items = new LinkedList<>();
+        }
+        this.items.add(item);
+    }
+
+    public void deleteItemFromShop(Item item) {
+        if (items != null) {
+            items.remove(item);
+        }
+    }
+
+    public void addReviewToShop(Review review) {
+        if (review == null) {
+            reviews = new LinkedList<>();
+        }
+        this.reviews.add(review);
+    }
+
+    public void deleteReviewFromShop(Review review) {
+        if (reviews != null) {
+            reviews.remove(review);
+        }
+    }
+
+    public void addDiscountToShop(Discount discount) {
+        if (discount == null) {
+            discounts = new LinkedList<>();
+        }
+        discounts.add(discount);
+    }
+
+    public void deleteDiscountFromShop(Discount discount) {
+        if (discounts != null) {
+            discounts.remove(discount);
+        }
+    }
 }

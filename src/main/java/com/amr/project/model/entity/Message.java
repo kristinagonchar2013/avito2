@@ -27,8 +27,6 @@ public class Message {
 
     @Column(name = "text_message")
     private String textMessage;
-
-    @Column
     private boolean viewed;
 
     @Column(name = "time_stamp")

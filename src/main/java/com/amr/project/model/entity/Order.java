@@ -22,14 +22,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Calendar date;
-    @Enumerated(EnumType.STRING) //статус будет в виде стринг
+    @Enumerated(EnumType.STRING)
     private Status status;
     private BigDecimal total;
     private String buyerName;
     private String buyerPhone;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)  //добавила каскад
-    @JoinColumn(name = "item_id") //связь однонаправленная, оставляем как есть
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "item_id")
     private List<Item> items;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,6 +40,6 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order") //добавила каскад
-    private OrderDetail orderDetail; //при правильной связи - это поле можно удалить, айди будут одинаковые
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order")
+    private OrderDetail orderDetail;
 }
