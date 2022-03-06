@@ -16,15 +16,17 @@ public class Coupon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(name = "min_order")
     private int minOrder;
     private int discount;
-    //private int percentage; это поле не нужно, уже есть discount, это одно и тоже
+    @Column(name = "is_used")
     private boolean isUsed;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    //TODO длобавить ассоциацию с магазином выдавшем купон
-    //TODO ввести наименования колонок для полей с составным именем
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
 }

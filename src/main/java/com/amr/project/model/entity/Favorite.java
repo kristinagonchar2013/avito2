@@ -18,16 +18,16 @@ public class Favorite {
     @Id
     private Long id;
 
-    //TODO добавить @JoinColumn(name = "favorite_id") т.к. связь однонаправденная и без этой аннотации Гибер создаст дополнительную таблицу связи
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "favorite_id")
     private List<Item> items;
 
-    //TODO добавить @JoinColumn(name = "favorite_id") т.к. связь однонаправденная и без этой аннотации Гибер создаст дополнительную таблицу связи
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "favorite_id")
     private List<Shop> shops;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "favorite", cascade = CascadeType.ALL)
-    @MapsId // аннотация, для подгружения айдишника юзера
+    @MapsId
     @JoinColumn(name = "id")
-    private User user; //убрала optional - если есть избранное, то он точно привязан к юзеру
+    private User user;
 }

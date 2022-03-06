@@ -18,6 +18,7 @@ public class Discount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "min_order")
     private int minOrder;
     private int percentage;
 
@@ -25,6 +26,7 @@ public class Discount {
     @JoinColumn(name = "user_id")
     private User user;
 
-    //TODO Сделать ассоциацию с магазином, который выдал скидку
-    //TODO Нужно ли поле fixedDiscount, которое есть в документации
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
 }

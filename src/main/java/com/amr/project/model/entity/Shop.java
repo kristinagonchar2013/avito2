@@ -23,7 +23,6 @@ public class Shop {
     private String email;
     private String phone;
     private String description;
-    private int count; //TODO что это за поле?
     private double rating;
 
     @Column(name = "is_moderated")
@@ -38,13 +37,11 @@ public class Shop {
     @Column(name = "is_pretendent_be_deleted")
     private boolean isPretendentToBeDeleted = false;
 
-    //TODO у магазина должен быть адрес по условию Adress. Зачем здесь город?
-    // может сделать двунаправленную связь ManyToOne?
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "city_id") //добавила joinColumn и manyToMany //TODO где ManyToMany?
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "city_id")
     private City location;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop") //добавила аннотацию
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop")
     private List<Item> items;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "shop")
@@ -54,14 +51,13 @@ public class Shop {
     @JoinColumn(name = "image_id")
     private Image logo;
 
-    @ManyToOne(fetch = FetchType.LAZY) //добавила аннотацию
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop") //добавила аннотацию, однонаправленная связь
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop")
     private List<Discount> discounts;
 
-    //TODO добавить ассоциацию @OneToMany с купонами. Их тоже магазин выдаёт
-
-    //TODO добавить ассоциацию с CartItem. См. RedMe
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "shop")
+    private List<Coupon> coupons;
 }

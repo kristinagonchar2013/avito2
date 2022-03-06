@@ -21,55 +21,54 @@ import java.util.*;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; //удалила аннотацию column
+    private Long id;
     private String email;
     private String username;
     private String password;
     private boolean activate;
+    @Column(name = "activation_code")
     private String activationCode;
     private String phone;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
-    @Enumerated(value = EnumType.STRING) //поставила аннотацию enumerated
+    @Enumerated(value = EnumType.STRING)
     private Role role;
     private int age;
-    @Enumerated(value = EnumType.STRING) //поставила аннотацию enumerated
+    @Enumerated(value = EnumType.STRING)
     private Gender gender;
     private Calendar birthday;
+    @Column(name = "is_using_two_factor_auth")
     private boolean isUsingTwoFactorAuth;
     private String secret;
 
-    //все joinColumn удалила
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Address> address;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user") //добавила каскад
-    private List<Address> address; //удалила аннотацию joinColumn
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<CartItem> carts;
 
-    //TODO OneToMany если у юзер выбирает несколько товаров в корзину?
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
-    private CartItem cart;
-//    при правильной связи это поле даже не нужно, у главной сущности - корзины будет храниться айди юзера
-
-    //TODO переименовать images в image
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
-    private Image images;
+    private Image image;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user")  //добавила каскад
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user")
     private List<Coupon> coupons;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user") //добавила каскад
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private List<Order> orders;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private List<Review> reviews;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user") //добавила каскад
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private List<Shop> shops;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user") //добавила каскад
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private Favorite favorite;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user") //добавила каскад
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user")
     private List<Discount> discounts;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -85,7 +84,7 @@ public class User implements UserDetails {
         if (role != null) {
             roles.add(role);
         }
-        return roles; //добавила метод для списка ролей
+        return roles;
     }
 
     @Override

@@ -22,9 +22,4 @@ public class Feedback {
     private String fullText;
     private LocalDateTime dateTime;
     private String username;
-
-    //TODO сделать однонаправленную ассоциацию с User ManyToOne ???
-    //@ManyToOne()
-    //@JoinColumn(name = "user_id")
-    //User user;
 }

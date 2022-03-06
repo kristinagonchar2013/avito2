@@ -17,22 +17,17 @@ import java.util.List;
 @NoArgsConstructor
 public class CartItem {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    // аннотация generatedvalue не нужна, его айди будет подгружаться от поля юзер через аннотацию joinColumn
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String anonID;
-    private BigInteger totalPrice; //итоговая сумма должна отражаться в корзине
-    //убрала поле количества товаров, они все будут в листе товаров
+    private BigInteger totalPrice;
+    private int quantity;
 
-    //TODO CartItem - это не корзина как таковая, а товар в корзине,товар для корзины, который обрастает такими
-    // подробностями для его идентификации и расчёта стоимости. Может вернуть количество, сделать связь с Item как
-    // OneToOne.
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId // аннотация, для подгружения айдишника юзера
-    @JoinColumn(name = "id") //для подгрузки айди юзера и совпадением с айди корзины
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY) //однонаправленная связь
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
-    private List<Item> items;
+    private Item item;
 }
