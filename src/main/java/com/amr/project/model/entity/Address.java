@@ -28,7 +28,7 @@ public class Address {
 
     @Column(name = "city_index")
     private String cityIndex;
-    private String street; //удалила аннотацию column
+    private String street;
     private String house;
 
     @ManyToOne(fetch = FetchType.LAZY)

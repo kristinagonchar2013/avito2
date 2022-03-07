@@ -1,5 +1,6 @@
 package com.amr.project.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,6 +21,7 @@ import java.sql.Timestamp;
 @Table(name = "message")
 @Data
 @Builder
+@AllArgsConstructor
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
