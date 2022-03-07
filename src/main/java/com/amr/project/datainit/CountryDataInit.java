@@ -19,10 +19,10 @@ public class CountryDataInit {
 
     @PostConstruct
     private void countryDataInit() {
-        countryDao.persist(Country.builder().id(1L).name("Russia").build());
-        countryDao.persist(Country.builder().id(2L).name("Ukraine").build());
-        countryDao.persist(Country.builder().id(3L).name("Italy").build());
-        countryDao.persist(Country.builder().id(4L).name("England").build());
-        countryDao.persist(Country.builder().id(5L).name("USA").build());
+        countryDao.persist(Country.builder().name("Russia").build());
+        countryDao.persist(Country.builder().name("Ukraine").build());
+        countryDao.persist(Country.builder().name("Italy").build());
+        countryDao.persist(Country.builder().name("England").build());
+        countryDao.persist(Country.builder().name("USA").build());
     }
 }

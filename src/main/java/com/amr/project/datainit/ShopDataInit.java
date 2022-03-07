@@ -29,7 +29,7 @@ public class ShopDataInit {
 
     @PostConstruct
     private void shopDataInit() {
-        shopDao.persist(Shop.builder().id(1L).name("Chairs & Co")
+        shopDao.persist(Shop.builder().name("Chairs & Co")
                 .email("chairs.co@gmail.com").phone("11111111")
                 .description("You will find what you want").rating(4.44)
                 .isModerated(true).isModerateAccept(true).moderatedRejectReason("adding")
@@ -38,7 +38,7 @@ public class ShopDataInit {
                 .discounts(List.of(discountDao.findById(1L)))
                 .coupons(List.of(couponDao.findById(1L), couponDao.findById(4L), couponDao.findById(7L))).build());
 
-        shopDao.persist(Shop.builder().id(2L).name("Mr.Table")
+        shopDao.persist(Shop.builder().name("Mr.Table")
                 .email("table.and.brothers@gmail.com").phone("22222222")
                 .description("It's best of the best of the best").rating(5.00)
                 .isModerated(true).isModerateAccept(true).moderatedRejectReason("adding")
@@ -47,7 +47,7 @@ public class ShopDataInit {
                 .discounts(discountDao.findAll())
                 .coupons(List.of(couponDao.findById(2L), couponDao.findById(5L))).build());
 
-        shopDao.persist(Shop.builder().id(3L).name("Active Sport Shop")
+        shopDao.persist(Shop.builder().name("Active Sport Shop")
                 .email("sportforever.com").phone("333333333")
                 .description("We love sport").rating(4.89)
                 .isModerated(true).isModerateAccept(true).moderatedRejectReason("adding")
@@ -56,7 +56,7 @@ public class ShopDataInit {
                 .discounts(List.of(discountDao.findById(2L), discountDao.findById(4L)))
                 .coupons(List.of(couponDao.findById(3L), couponDao.findById(6L))).build());
 
-        shopDao.persist(Shop.builder().id(4L).name("Only Mobile")
+        shopDao.persist(Shop.builder().name("Only Mobile")
                 .email("worldofmobile.net").email("444444444")
                 .description("We call you!").rating(3.2)
                 .isModerated(true).isModerateAccept(true).moderatedRejectReason("adding")

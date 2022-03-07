@@ -19,9 +19,9 @@ public class CategoryDataInit {
 
     @PostConstruct
     private void shopDataInit() {
-        categoryDao.persist(Category.builder().id(1L).name("Bicycle").build());
-        categoryDao.persist(Category.builder().id(2L).name("Smartphone").build());
-        categoryDao.persist(Category.builder().id(3L).name("Table").build());
-        categoryDao.persist(Category.builder().id(4L).name("Chair").build());
+        categoryDao.persist(Category.builder().name("Bicycle").build());
+        categoryDao.persist(Category.builder().name("Smartphone").build());
+        categoryDao.persist(Category.builder().name("Table").build());
+        categoryDao.persist(Category.builder().name("Chair").build());
     }
 }

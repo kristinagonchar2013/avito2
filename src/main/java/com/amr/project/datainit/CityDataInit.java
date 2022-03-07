@@ -22,15 +22,15 @@ public class CityDataInit {
 
     @PostConstruct
     private void cityDataInit() {
-        cityDao.persist(City.builder().id(1L).name("Moscow").country(countryDao.findById(1L)).build());
-        cityDao.persist(City.builder().id(2L).name("Krasnodar").country(countryDao.findById(1L)).build());
-        cityDao.persist(City.builder().id(3L).name("Kiev").country(countryDao.findById(2L)).build());
-        cityDao.persist(City.builder().id(4L).name("Odessa").country(countryDao.findById(2L)).build());
-        cityDao.persist(City.builder().id(5L).name("Milan").country(countryDao.findById(3L)).build());
-        cityDao.persist(City.builder().id(6L).name("Verona").country(countryDao.findById(3L)).build());
-        cityDao.persist(City.builder().id(7L).name("Liverpool").country(countryDao.findById(4L)).build());
-        cityDao.persist(City.builder().id(8L).name("London").country(countryDao.findById(4L)).build());
-        cityDao.persist(City.builder().id(9L).name("Los Angeles").country(countryDao.findById(5L)).build());
-        cityDao.persist(City.builder().id(10L).name("New York").country(countryDao.findById(5L)).build());
+        cityDao.persist(City.builder().name("Moscow").country(countryDao.findById(1L)).build());
+        cityDao.persist(City.builder().name("Krasnodar").country(countryDao.findById(1L)).build());
+        cityDao.persist(City.builder().name("Kiev").country(countryDao.findById(2L)).build());
+        cityDao.persist(City.builder().name("Odessa").country(countryDao.findById(2L)).build());
+        cityDao.persist(City.builder().name("Milan").country(countryDao.findById(3L)).build());
+        cityDao.persist(City.builder().name("Verona").country(countryDao.findById(3L)).build());
+        cityDao.persist(City.builder().name("Liverpool").country(countryDao.findById(4L)).build());
+        cityDao.persist(City.builder().name("London").country(countryDao.findById(4L)).build());
+        cityDao.persist(City.builder().name("Los Angeles").country(countryDao.findById(5L)).build());
+        cityDao.persist(City.builder().name("New York").country(countryDao.findById(5L)).build());
     }
 }

@@ -34,7 +34,7 @@ public class UserDataInit {
 
     @PostConstruct
     private void userDataInit() {
-        userDao.persist(User.builder().id(1L).email("user@init.com")
+        userDao.persist(User.builder().email("user@init.com")
                 .username("user").password("user")
                 .activate(true).activationCode("user")
                 .phone("1111111").firstName("user").lastName("user").age(30).gender(Gender.MALE)
@@ -45,7 +45,7 @@ public class UserDataInit {
 //                .discounts(Arrays.asList(discountDao.findById(1L), discountDao.findById(4L)))
                 .build());
 
-        userDao.persist(User.builder().id(2L).email("admin@init.com")
+        userDao.persist(User.builder().email("admin@init.com")
                 .username("admin").password("admin")
                 .activate(true).activationCode("admin")
                 .phone("1111111").firstName("admin").lastName("admin").age(30).gender(Gender.MALE)
@@ -54,7 +54,7 @@ public class UserDataInit {
 //                .shops(Arrays.asList(shopDao.findById(1L)))
                 .build());
 
-        userDao.persist(User.builder().id(3L).email("moderator@init.com")
+        userDao.persist(User.builder().email("moderator@init.com")
                 .username("moderator").password("moderator")
                 .activate(true).activationCode("moderator")
                 .phone("1111111").firstName("moderator").lastName("moderator").age(30).gender(Gender.MALE)
@@ -62,7 +62,7 @@ public class UserDataInit {
                 .birthday(new GregorianCalendar(1991, Calendar.MAY, 9))
                 .build());
 
-        userDao.persist(User.builder().id(4L).email("user1@init.com")
+        userDao.persist(User.builder().email("user1@init.com")
                 .username("user1").password("user1")
                 .activate(true).activationCode("user1")
                 .phone("1111111").firstName("user1").lastName("user1").age(30).gender(Gender.MALE)

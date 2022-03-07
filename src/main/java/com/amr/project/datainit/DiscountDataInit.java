@@ -19,9 +19,9 @@ public class DiscountDataInit {
 
     @PostConstruct
     private void discountDataInit() {
-        dao.persist(Discount.builder().id(1L).minOrder(150).percentage(5).build());
-        dao.persist(Discount.builder().id(2L).minOrder(350).percentage(15).build());
-        dao.persist(Discount.builder().id(3L).minOrder(220).percentage(10).build());
-        dao.persist(Discount.builder().id(4L).minOrder(380).percentage(25).build());
+        dao.persist(Discount.builder().minOrder(150).percentage(5).build());
+        dao.persist(Discount.builder().minOrder(350).percentage(15).build());
+        dao.persist(Discount.builder().minOrder(220).percentage(10).build());
+        dao.persist(Discount.builder().minOrder(380).percentage(25).build());
     }
 }

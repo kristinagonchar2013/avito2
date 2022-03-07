@@ -29,7 +29,7 @@ public class ReviewDataInit {
 
     @PostConstruct
     private void reviewDataInit() {
-        reviewDao.persist(Review.builder().id(1L)
+        reviewDao.persist(Review.builder()
                 .dignity("it's ok").flaw("Too simple")
                 .text("i like this")
                 .date(new Date()).rating(4)
@@ -38,7 +38,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(1L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(2L)
+        reviewDao.persist(Review.builder()
                 .dignity("it's not ok").flaw("don't like")
                 .date(new Date()).rating(5)
                 .isModerateAccept(true).moderatedRejectReason("adding")
@@ -46,7 +46,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(1L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(3L)
+        reviewDao.persist(Review.builder()
                 .dignity("ugly").flaw("all")
                 .date(new Date()).rating(2)
                 .isModerateAccept(true).moderatedRejectReason("adding")
@@ -54,7 +54,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(1L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(4L)
+        reviewDao.persist(Review.builder()
                 .dignity("maybe").flaw("maybe")
                 .date(new Date()).rating(4)
                 .isModerateAccept(true).moderatedRejectReason("adding")
@@ -62,7 +62,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(2L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(5L)
+        reviewDao.persist(Review.builder()
                 .dignity("cool").flaw("no")
                 .date(new Date()).rating(5)
                 .isModerateAccept(true).moderatedRejectReason("adding")
@@ -70,7 +70,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(3L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(6L)
+        reviewDao.persist(Review.builder()
                 .dignity("bad").flaw("very bad")
                 .date(new Date()).rating(3)
                 .isModerateAccept(true).moderatedRejectReason("adding")
@@ -78,7 +78,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(4L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(7L)
+        reviewDao.persist(Review.builder()
                 .dignity("good").flaw("no")
                 .date(new Date()).rating(4)
                 .isModerateAccept(true).moderatedRejectReason("adding")
@@ -86,7 +86,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(1L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(8L)
+        reviewDao.persist(Review.builder()
                 .dignity("i got it").flaw("no")
                 .date(new Date()).rating(5)
                 .isModerateAccept(true).moderatedRejectReason("adding")
@@ -94,7 +94,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(2L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(9L)
+        reviewDao.persist(Review.builder()
                 .dignity("very bad").flaw("it all")
                 .date(new Date()).rating(2)
                 .isModerateAccept(true).moderatedRejectReason("adding")
@@ -102,7 +102,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(3L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(10L)
+        reviewDao.persist(Review.builder()
                 .dignity("good staff").flaw("no")
                 .date(new Date()).rating(5)
                 .isModerateAccept(true).moderatedRejectReason("adding")
@@ -110,7 +110,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(4L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(11L)
+        reviewDao.persist(Review.builder()
                 .dignity("normal").flaw("its simple")
                 .date(new Date()).rating(4)
                 .isModerateAccept(true).moderatedRejectReason("adding")
@@ -118,7 +118,7 @@ public class ReviewDataInit {
                 .user(userDao.findById(1L))
                 .build());
 
-        reviewDao.persist(Review.builder().id(12L)
+        reviewDao.persist(Review.builder()
                 .dignity("no").flaw("sadly")
                 .date(new Date()).rating(3)
                 .isModerateAccept(true).moderatedRejectReason("adding")
