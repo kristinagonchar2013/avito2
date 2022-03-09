@@ -36,7 +36,8 @@ public class Favorite {
     private List<Shop> shops;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @MapsId //удалила mapped by
-//    @JoinColumn(name = "id")
+    @MapsId //todo удалила mapped by
+    //todo без него все работает
+    //@JoinColumn(name = "id")
     private User user;
 }

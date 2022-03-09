@@ -43,6 +43,7 @@ public class Order {
 
     @Singular
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    // поменяла связь на manytomany
 //    @JoinColumn(name = "item_id")
     private List<Item> items;
 
@@ -54,6 +55,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
+//    todo этот класс не нужен, связь не устанавливаеся, выпадает ошибка, без него можно все достать из класса order
 //    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order")
 //    private OrderDetail orderDetail;
 //    private Long orderDetailId;

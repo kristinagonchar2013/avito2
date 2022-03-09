@@ -53,6 +53,7 @@ public class Item {
 
     @Singular
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    //todo поменяла связь на manytomany
     private Set<Category> categories;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
