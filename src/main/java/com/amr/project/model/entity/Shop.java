@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -38,10 +39,11 @@ public class Shop {
     @Column(name = "is_pretendent_be_deleted")
     private boolean isPretendentToBeDeleted;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id")
     private City location;
 
+    @Singular
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop")
     private List<Item> items;
 
@@ -56,10 +58,10 @@ public class Shop {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE, mappedBy = "shop")
     private List<Discount> discounts;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "shop")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "shop")
     private List<Coupon> coupons;
 
     public void addItemToShop(Item item) {

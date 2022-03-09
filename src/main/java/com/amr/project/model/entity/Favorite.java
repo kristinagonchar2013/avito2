@@ -5,7 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
@@ -16,18 +24,19 @@ import java.util.List;
 @AllArgsConstructor
 public class Favorite {
     @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "favorite_id")
     private List<Item> items;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "favorite_id")
     private List<Shop> shops;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "favorite", cascade = CascadeType.ALL)
-    @MapsId
-    @JoinColumn(name = "id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @MapsId //удалила mapped by
+//    @JoinColumn(name = "id")
     private User user;
 }

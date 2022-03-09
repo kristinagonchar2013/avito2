@@ -9,14 +9,15 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+//@Entity
+//@Table(name = "order_detail")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table
 @ToString
 public class OrderDetail {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private BigDecimal total;
     private String currency;
@@ -31,9 +32,8 @@ public class OrderDetail {
     private String buyerName;
     private String buyerPhone;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @JoinColumn(name = "id")
-    private Order order;
-
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @MapsId
+//    @JoinColumn(name = "order_id")
+//    private Order order;
 }

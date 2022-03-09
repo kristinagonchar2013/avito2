@@ -42,8 +42,9 @@ public class User implements UserDetails {
     private boolean isUsingTwoFactorAuth;
     private String secret;
 
+    @Singular
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Address> address;
+    private List<Address> addresses;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private List<CartItem> carts;

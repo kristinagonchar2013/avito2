@@ -11,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -32,10 +31,10 @@ public class Address {
     private String house;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "city_id")
+//    @JoinColumn(name = "address_id")
     private City city;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+//    @JoinColumn(name = "user_id")
     private User user;
 }
