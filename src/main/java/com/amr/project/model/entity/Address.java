@@ -31,10 +31,8 @@ public class Address {
     private String house;
 
     @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "address_id")
     private City city;
 
     @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
     private User user;
 }

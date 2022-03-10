@@ -24,7 +24,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Favorite {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
@@ -36,8 +35,6 @@ public class Favorite {
     private List<Shop> shops;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @MapsId //todo удалила mapped by
-    //todo без него все работает
-    //@JoinColumn(name = "id")
+    @MapsId
     private User user;
 }
