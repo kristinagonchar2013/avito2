@@ -6,12 +6,8 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.List;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "user")
@@ -22,42 +18,73 @@ import java.util.List;
 @ToString(of = {"id", "email", "username", "password", "phone", "firstName", "lastName", "age", "gender"})
 @EqualsAndHashCode(of = {"id", "email", "username"})
 public class User implements UserDetails {
-    //TODO надо продумать юзера, слишком много у него связей,
-    // нужны-ли они, возможно где-то вместо связи с ентити использовать id,
-    // иначе есть вероятность попасть в констрейнты и не отстроить нормальную структуру
-    // для взаимодействия с БД
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String username;
     private String password;
     private boolean activate;
+    @Column(name = "activation_code")
     private String activationCode;
     private String phone;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
     private int age;
-    private List<Address> address;
-    private List<Role> roles;
+    @Enumerated(value = EnumType.STRING)
     private Gender gender;
     private Calendar birthday;
-    private Image images;
-    private List<Coupon> coupons;
-    private List<CartItem> cart;
-    private List<Order> orders;
-    private List<Review> reviews;
-    private List<Shop> shops;
-    private Favorite favorite;
-    private List<Discount> discounts;
+    @Column(name = "is_using_two_factor_auth")
     private boolean isUsingTwoFactorAuth;
     private String secret;
 
+    @Singular
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Address> addresses;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<CartItem> carts;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private Image image;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user")
+    private List<Coupon> coupons;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Order> orders;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Review> reviews;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Shop> shops;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Favorite favorite;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user")
+    private List<Discount> discounts;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "user_chat",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "chat_id"))
+    private List<Chat> chats;
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (roles.isEmpty()) {
-            return new ArrayList<>();
-        } else {
-            return roles;
+        ArrayList<Role> roles = new ArrayList<>();
+        if (role != null) {
+            roles.add(role);
         }
+        return roles;
     }
 
     @Override

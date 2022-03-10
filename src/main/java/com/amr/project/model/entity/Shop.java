@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -16,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Shop {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,22 +25,32 @@ public class Shop {
     private String email;
     private String phone;
     private String description;
-    private int count;
     private double rating;
+
+    @Column(name = "is_moderated")
     private boolean isModerated;
+
+    @Column(name = "is_moderate_accept")
     private boolean isModerateAccept;
+
+    @Column(name = "moderated_reject_reason")
     private String moderatedRejectReason;
+
+    @Column(name = "is_pretendent_be_deleted")
     private boolean isPretendentToBeDeleted;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "shop")
-    @JoinColumn(name = "item_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "city_id")
+    private City location;
+
+    @Singular
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop")
     private List<Item> items;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "shop")
-    @JoinColumn(name = "review_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "shop")
     private List<Review> reviews;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
     private Image logo;
 
@@ -46,13 +58,11 @@ public class Shop {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "discount_id")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE, mappedBy = "shop")
     private List<Discount> discounts;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "city_id")
-    private City location;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "shop")
+    private List<Coupon> coupons;
 
     public void addItemToShop(Item item) {
         if (items == null) {

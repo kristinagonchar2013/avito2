@@ -1,9 +1,5 @@
 package com.amr.project.model.dto;
 
-import com.amr.project.model.entity.Address;
-import com.amr.project.model.entity.Item;
-import com.amr.project.model.entity.OrderDetail;
-import com.amr.project.model.entity.User;
 import com.amr.project.model.enums.Status;
 
 
@@ -17,9 +13,6 @@ public class OrderDto {
     private Calendar date;
     private Status status;
     private BigDecimal total;
-    private String buyerName;
-    private String buyerPhone;
     private List<ItemDto> items;
     private AddressDto address;
-    private OrderDetailDto orderDetail;
 }

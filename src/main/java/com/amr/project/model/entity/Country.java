@@ -19,10 +19,7 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private String name;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "city_id")
-    private List <City> city;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "country")
+    private List<City> city;
 }

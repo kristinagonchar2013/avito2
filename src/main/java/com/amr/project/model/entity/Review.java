@@ -5,7 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
@@ -18,13 +26,19 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String dignity; //плюсы
-    private String flaw; //минусы
+    private String dignity;
+    private String flaw;
     private String text;
     private Date date;
     private int rating;
+
+    @Column(name = "is_moderated")
     private boolean isModerated;
+
+    @Column(name = "is_moderate_accept")
     private boolean isModerateAccept;
+
+    @Column(name = "moderate_reject_reason")
     private String moderatedRejectReason;
 
     @ManyToOne(fetch = FetchType.LAZY)
