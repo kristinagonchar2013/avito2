@@ -27,7 +27,7 @@ public class SearchController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MainPageDto>> searchItemOrShop(@RequestParam String keyword) {
+    public ResponseEntity<MainPageDto> searchItemOrShop(@RequestParam String keyword) {
         List<Shop> shopList = shopService.findShops(keyword);
         List<Item> itemList = itemService.findItems(keyword);
         return new ResponseEntity(mainPageMapper.mainPageToMainPageDto(shopList, itemList), HttpStatus.OK);
