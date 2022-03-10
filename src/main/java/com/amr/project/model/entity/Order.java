@@ -38,13 +38,9 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private Status status;
     private BigDecimal total;
-//    private String buyerName;
-//    private String buyerPhone;
 
     @Singular
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    // поменяла связь на manytomany
-//    @JoinColumn(name = "item_id")
     private List<Item> items;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -54,9 +50,4 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
-//    todo этот класс не нужен, связь не устанавливаеся, выпадает ошибка, без него можно все достать из класса order
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order")
-//    private OrderDetail orderDetail;
-//    private Long orderDetailId;
 }
