@@ -39,11 +39,13 @@ public class Message {
     private Chat chat;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+//    @MapsId
+//    @JoinColumn(name = "user_id")
     private User to;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+//    @MapsId
+//    @JoinColumn(name = "user_id")
     private User from;
 
     public Message() {
