@@ -1,5 +1,6 @@
 package com.amr.project.service.datainit;
 
+import com.amr.project.model.entity.Chat;
 import com.amr.project.model.entity.Item;
 import com.amr.project.service.abstracts.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,16 @@ public class DataInit5 {
     private final CategoryService categoryService;
     private final ItemService itemService;
     private final ShopService shopService;
+    private final ChatService chatService;
+    private final UserService userService;
 
     @Autowired
-    public DataInit5(CategoryService categoryService, ItemService itemService, ShopService shopService) {
+    public DataInit5(CategoryService categoryService, ItemService itemService, ShopService shopService, ChatService chatService, UserService userService) {
         this.categoryService = categoryService;
         this.itemService = itemService;
         this.shopService = shopService;
+        this.chatService = chatService;
+        this.userService = userService;
     }
 
     @PostConstruct
@@ -105,6 +110,26 @@ public class DataInit5 {
                 .category(categoryService.findById(7L))
                 .category(categoryService.findById(9L))
                 .shop(shopService.findById(1L))
+                .build());
+    }
+
+    @PostConstruct
+    private void chatDataInit() {
+        chatService.persist(Chat.builder()
+                .member(userService.findById(1L))
+                .member(userService.findById(2L))
+                .build());
+        chatService.persist(Chat.builder()
+                .member(userService.findById(1L))
+                .member(userService.findById(3L))
+                .build());
+        chatService.persist(Chat.builder()
+                .member(userService.findById(1L))
+                .member(userService.findById(4L))
+                .build());
+        chatService.persist(Chat.builder()
+                .member(userService.findById(3L))
+                .member(userService.findById(4L))
                 .build());
     }
 }
