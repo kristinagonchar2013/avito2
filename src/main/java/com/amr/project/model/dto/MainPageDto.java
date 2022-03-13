@@ -1,12 +1,19 @@
 package com.amr.project.model.dto;
 
-import com.amr.project.model.entity.Item;
-import com.amr.project.model.entity.Shop;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class MainPageDto {
 
-    private List<ShopDto> shopList;
-    private List<ItemDto> itemList;
+    @Autowired
+    private List<ShopDto> shopDtoList;
+    private List <ItemDto> itemDtoList;
+    private List <CategoryDto> categoryDtoList;
+    private UserDto userDto;
 }
