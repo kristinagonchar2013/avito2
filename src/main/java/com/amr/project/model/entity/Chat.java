@@ -32,7 +32,7 @@ public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long hash = getHash();
+    private Long hash;
 
     @Singular
     @ManyToMany(fetch = FetchType.LAZY)
