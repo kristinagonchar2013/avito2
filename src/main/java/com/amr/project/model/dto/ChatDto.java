@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,6 +17,6 @@ import java.util.List;
 public class ChatDto {
     private Long id;
     private Long hash;
-    private List<User> members;
+    private Set<User> members;
     private List<Message> messages;
 }
