@@ -30,20 +30,9 @@ public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements
         }
         user.setActivate(true);
         user.setActivationCode(null);
-        userDao.persist(user);
         return true;
     }
 
-    @Override
-    public User persist(User user) {
-        user.setRole(user.getRole());
-        user.setActivationCode(UUID.randomUUID().toString());
-        String message = String.format("Dear %s, welcome to Avito2. Please, visit the next link http://localhost:8080/activation/%s to activate your account",
-                user.getUsername(),
-                user.getActivationCode());
 
-        mailSenderService.sendMail(user.getEmail(), "Activation code", message);
-        return this.persist(user);
-    }
 }
 

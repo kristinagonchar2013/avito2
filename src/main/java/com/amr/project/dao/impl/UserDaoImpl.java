@@ -21,4 +21,6 @@ public class UserDaoImpl extends ReadWriteDaoImpl<User, Long> implements UserDao
         return user;
     }
 
+
+
 }
