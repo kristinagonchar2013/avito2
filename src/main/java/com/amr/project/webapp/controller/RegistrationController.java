@@ -27,6 +27,6 @@ public class RegistrationController {
             message = "User successfully activated";
         } else
             message = "Activation code is not found";
-        return ResponseEntity.ok(registrationMapper.MessageToRegistrationDTO(message);
+        return ResponseEntity.ok (registrationMapper.MessageToRegistrationDTO(message));
     }
 }

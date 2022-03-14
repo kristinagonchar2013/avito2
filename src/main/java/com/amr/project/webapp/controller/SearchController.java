@@ -30,7 +30,7 @@ public class SearchController {
     public ResponseEntity<MainPageDto> searchItemOrShop(@RequestParam String keyword) {
         List<Shop> shopList = shopService.findShops(keyword);
         List<Item> itemList = itemService.findItems(keyword);
-        return new ResponseEntity(mainPageMapper.mainPageToMainPageDto(shopList, itemList), HttpStatus.OK);
+        return new ResponseEntity(mainPageMapper.searchToMainPageDto(shopList, itemList), HttpStatus.OK);
     }
 }
 

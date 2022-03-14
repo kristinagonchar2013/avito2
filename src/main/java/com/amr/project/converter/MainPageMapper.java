@@ -14,4 +14,5 @@ public interface MainPageMapper {
 
     MainPageDto mainPageToMainPageDto(List<Shop> shopList, List<Item> itemList,
                                       List <Category> categoryList, User user);
+    MainPageDto searchToMainPageDto(List<Shop> shopList, List<Item> itemList);
 }

@@ -15,15 +15,10 @@ public class UserDaoImpl extends ReadWriteDaoImpl<User, Long> implements UserDao
     EntityManager entityManager;
 
     @Override
-    public Optional<User> findByUsername(String name) {
-        List<User> users = entityManager.createQuery("SELECT u FROM User u JOIN FETCH u.role WHERE u.firstName =:name", User.class)
-                .setParameter("name", name).getResultList();
-        return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
-    }
-
-    @Override
     public User findByActivationCode(String code) {
-        return null;
+        User user = entityManager.createQuery("SELECT u FROM User u WHERE u.activationCode =: activationCode", User.class)
+                .setParameter("activationCode", code).getSingleResult();
+        return user;
     }
 
 }

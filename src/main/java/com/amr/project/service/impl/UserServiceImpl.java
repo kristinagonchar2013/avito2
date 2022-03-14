@@ -4,15 +4,9 @@ import com.amr.project.dao.abstracts.UserDao;
 import com.amr.project.model.entity.User;
 import com.amr.project.service.abstracts.MailSenderService;
 import com.amr.project.service.abstracts.UserService;
-import org.mapstruct.ap.shaded.freemarker.template.utility.StringUtil;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.util.StringUtils;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,15 +15,11 @@ public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements
     private final UserDao userDao;
     private final MailSenderService mailSenderService;
 
+    @Autowired
     public UserServiceImpl(UserDao userDao, MailSenderService mailSenderService) {
         super(userDao);
         this.userDao = userDao;
         this.mailSenderService = mailSenderService;
-    }
-
-    @Override
-    public Optional<User> findByUsername(String name) {
-        return userDao.findByUsername(name);
     }
 
     @Override
@@ -38,6 +28,7 @@ public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements
         if (user == null) {
             return false;
         }
+        user.setActivate(true);
         user.setActivationCode(null);
         userDao.persist(user);
         return true;
@@ -45,10 +36,9 @@ public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements
 
     @Override
     public User persist(User user) {
-        user.setActivate(true);
         user.setRole(user.getRole());
         user.setActivationCode(UUID.randomUUID().toString());
-        String message = String.format("Dear %s, welcome to Avito2. Please, visit next link http://localhost:8080/activation/%s to activate your account",
+        String message = String.format("Dear %s, welcome to Avito2. Please, visit the next link http://localhost:8080/activation/%s to activate your account",
                 user.getUsername(),
                 user.getActivationCode());
 
