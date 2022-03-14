@@ -36,6 +36,7 @@ public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements
     @Override
     public User persist(User user) {
         user.setActivate(false);
+        user.setActivationCode(UUID.randomUUID().toString());
         String message = String.format("Dear %s, welcome to avito. Please visit the next link: http://localhost:8080/activate/%s to activate your account",
                 user.getUsername(),
                 user.getActivationCode());
