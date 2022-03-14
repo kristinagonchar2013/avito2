@@ -33,6 +33,14 @@ public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements
         return true;
     }
 
-
+    @Override
+    public User persist(User user) {
+        user.setActivate(false);
+        String message = String.format("Dear %s, welcome to avito. Please visit the next link: http://localhost:8080/activate/%s to activate your account",
+                user.getUsername(),
+                user.getActivationCode());
+        mailSenderService.sendMail(user.getEmail(), "Activation code", message);
+        return this.persist(user);
+    }
 }
 
