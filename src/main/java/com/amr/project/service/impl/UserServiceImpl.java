@@ -33,11 +33,22 @@ public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements
     }
 
     @Override
+    public boolean activateUser(String code) {
+        User user = userDao.findByActivationCode(code);
+        if (user == null) {
+            return false;
+        }
+        user.setActivationCode(null);
+        userDao.persist(user);
+        return true;
+    }
+
+    @Override
     public User persist(User user) {
         user.setActivate(true);
         user.setRole(user.getRole());
         user.setActivationCode(UUID.randomUUID().toString());
-        String message = String.format("Dear %s, welcome to Avito2. Please, visit next link http://localhost:8080/activation/%s",
+        String message = String.format("Dear %s, welcome to Avito2. Please, visit next link http://localhost:8080/activation/%s to activate your account",
                 user.getUsername(),
                 user.getActivationCode());
 

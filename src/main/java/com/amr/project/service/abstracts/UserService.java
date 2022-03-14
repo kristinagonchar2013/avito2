@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface UserService extends ReadWriteService<User, Long> {
     Optional<User> findByUsername(String name);
+
+    boolean activateUser(String code);
 }

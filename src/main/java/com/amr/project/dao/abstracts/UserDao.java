@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface UserDao extends ReadWriteDao<User, Long> {
     Optional<User> findByUsername(String name);
 
+    User findByActivationCode(String code);
 }

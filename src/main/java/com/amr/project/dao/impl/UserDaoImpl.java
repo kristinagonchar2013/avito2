@@ -21,4 +21,9 @@ public class UserDaoImpl extends ReadWriteDaoImpl<User, Long> implements UserDao
         return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
     }
 
+    @Override
+    public User findByActivationCode(String code) {
+        return null;
+    }
+
 }
