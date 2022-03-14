@@ -1,19 +1,30 @@
 package com.amr.project.exception;
 
+import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
-import java.util.List;
+import javax.persistence.TypedQuery;
+import java.util.Optional;
 
 public class ExceptionUtilGetSingleResult {
 
-    public static Object getSingleResultOrNull(Query query){
-        List results = query.getResultList();
-        if (results.isEmpty()) {
+    public static Object getSingleResultOrNull(Query query) {
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException ex) {
             return null;
+        } catch (NonUniqueResultException exp) {
+            throw exp;
         }
-        else if (results.size() == 1) {
-            return results.get(0);
+    }
+
+    public static <T> Optional<T> getOptionalResult(TypedQuery<T> query) {
+        try {
+            return Optional.of(query.getSingleResult());
+        } catch (NoResultException ex) {
+            return Optional.empty();
+        } catch (NonUniqueResultException exp) {
+            throw exp;
         }
-        throw new NonUniqueResultException();
     }
 }
