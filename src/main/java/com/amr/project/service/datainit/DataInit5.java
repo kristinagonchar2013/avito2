@@ -113,23 +113,4 @@ public class DataInit5 {
                 .build());
     }
 
-    @PostConstruct
-    private void chatDataInit() {
-        chatService.persist(Chat.builder()
-                .member(userService.findById(1L))
-                .member(userService.findById(2L))
-                .build());
-        chatService.persist(Chat.builder()
-                .member(userService.findById(1L))
-                .member(userService.findById(3L))
-                .build());
-        chatService.persist(Chat.builder()
-                .member(userService.findById(1L))
-                .member(userService.findById(4L))
-                .build());
-        chatService.persist(Chat.builder()
-                .member(userService.findById(3L))
-                .member(userService.findById(4L))
-                .build());
-    }
 }
