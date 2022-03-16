@@ -41,6 +41,7 @@ public class User implements UserDetails {
     @Column(name = "is_using_two_factor_auth")
     private boolean isUsingTwoFactorAuth;
     private String secret;
+    private boolean isPretendedToBeDeleted;
 
     @Singular
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
@@ -106,4 +107,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }
