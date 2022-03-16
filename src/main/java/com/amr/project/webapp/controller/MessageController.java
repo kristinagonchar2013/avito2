@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 
 @RestController
 public class MessageController {
@@ -24,10 +25,11 @@ public class MessageController {
         this.messageMapper = messageMapper;
     }
 
-    @MessageMapping("chat/{id}/sendMessage")
-    public void sendMessage(@PathVariable Long id, @Payload MessageDto messageDto) {
+    @MessageMapping("/chat")
+    public void sendMessage(@Payload MessageDto messageDto) {
+        messageDto.setCreationTime(LocalDateTime.now());
         messageService.persist(messageMapper.messageDtoToMessage(messageDto));
-        template.convertAndSendToUser(messageDto.getTo().getUsername(), "/chat/" + id, messageDto);
+        template.convertAndSendToUser(messageDto.getTo().getUsername()
+                , "/user/chat", messageDto);
     }
-
 }
