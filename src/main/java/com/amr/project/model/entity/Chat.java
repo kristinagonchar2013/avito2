@@ -27,7 +27,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"id","hash", "members", "messages"})
+@EqualsAndHashCode(of = {"members"})
 public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
