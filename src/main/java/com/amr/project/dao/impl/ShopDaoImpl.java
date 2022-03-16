@@ -15,14 +15,13 @@ public class ShopDaoImpl extends ReadWriteDaoImpl<Shop, Long> implements ShopDao
     protected EntityManager em;
 
     @Override
-    public List<Shop> findAllNotApproved() {
-        return em.createQuery("from Shop where status = 'notApproved'")
+    public List<Shop> findAllBanned() {
+        return em.createQuery("from Shop where status = 'BANNED'")
                 .getResultList();
     }
     @Override
     public List<Shop> findAllApproved() {
-        return em.createQuery("from Shop where status = 'approved'")
+        return em.createQuery("from Shop where status = 'APPROVED'")
                 .getResultList();
     }
-
 }

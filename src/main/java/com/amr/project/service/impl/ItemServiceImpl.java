@@ -17,8 +17,8 @@ public class ItemServiceImpl extends ReadWriteServiceImpl<Item, Long> implements
     }
 
     @Override
-    public List<Item> findAllNotApproved() {
-        return dao.findAllNotApproved();
+    public List<Item> findAllBanned() {
+        return dao.findAllBanned();
     }
 
     @Override

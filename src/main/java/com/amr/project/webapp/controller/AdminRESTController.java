@@ -23,7 +23,6 @@ public class AdminRESTController {
 
     @PostMapping("/setStatus")
     public ResponseEntity approveShop(@RequestParam Map<String,String> requestParams) {
-
         String nameEntity = requestParams.get("nameEntity");
         String id = requestParams.get("id");
         String status = requestParams.get("status");
@@ -36,4 +35,5 @@ public class AdminRESTController {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
 }

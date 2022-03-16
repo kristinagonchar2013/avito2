@@ -5,6 +5,6 @@ import com.amr.project.model.entity.Shop;
 import java.util.List;
 
 public interface ShopService extends ReadWriteService<Shop, Long> {
-    List<Shop> findAllNotApproved();
+    List<Shop> findAllBanned();
     List<Shop> findAllApproved();
 }

@@ -15,14 +15,14 @@ public class ItemDaoImpl extends ReadWriteDaoImpl<Item, Long> implements ItemDao
     protected EntityManager em;
 
     @Override
-    public List<Item> findAllNotApproved() {
-        return em.createQuery("from Item where status = 'notApproved'")
+    public List<Item> findAllBanned() {
+        return em.createQuery("from Item where status = 'BANNED'")
                 .getResultList();
     }
 
     @Override
     public List<Item> findAllApproved() {
-        return em.createQuery("from Item where status = 'approved'")
+        return em.createQuery("from Item where status = 'APPROVED'")
                 .getResultList();
     }
 }

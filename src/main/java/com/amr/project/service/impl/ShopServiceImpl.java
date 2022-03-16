@@ -19,8 +19,8 @@ public class ShopServiceImpl extends ReadWriteServiceImpl<Shop, Long> implements
     }
 
     @Override
-    public List<Shop> findAllNotApproved() {
-        return dao.findAllNotApproved();
+    public List<Shop> findAllBanned() {
+        return dao.findAllBanned();
     }
 
     @Override

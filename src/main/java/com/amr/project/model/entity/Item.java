@@ -29,7 +29,10 @@ public class Item {
     private boolean isModerated;
     private String moderatedRejectReason;
     private boolean isPretendedToBeDeleted;
-    private String status;
+    enum status {
+        APPROVED,
+        BANNED
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
