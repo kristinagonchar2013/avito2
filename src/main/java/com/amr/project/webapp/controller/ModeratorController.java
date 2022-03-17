@@ -61,11 +61,11 @@ public class ModeratorController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/edit")
     public ResponseEntity<?> update(@RequestBody Object dto, @RequestParam Map<String, String> request) {
         String nameEntity = request.get("nameEntity");
         String id = request.get("id");
-        String body;
+        ResponseEntity response = null;
         switch (nameEntity) {
             case "user":
                 User user = userMapper.userDtoToUser((UserDto) dto);
@@ -74,20 +74,21 @@ public class ModeratorController {
                     user.setPassword(userService.findById(Long.parseLong(id)).getPassword());
                 }
                 userService.update(user);
-                return ResponseEntity.status(HttpStatus.OK).body(userMapper.userToUserDto(user));
+                response = ResponseEntity.status(HttpStatus.OK).body(userMapper.userToUserDto(user));
+                break;
             case "shop":
                 Shop shop = shopMapper.shopDtoToShop((ShopDto) dto);
                 shop.setId(Long.parseLong(id));
                 shopService.update(shop);
-                body = String.valueOf(shopMapper.shopToShopDto(shop));
-//                return ResponseEntity.status(HttpStatus.OK).body(body);
+                response = ResponseEntity.status(HttpStatus.OK).body(shopMapper.shopToShopDto(shop));
                 break;
             case "item":
                 Item item = itemMapper.itemDtoToItem((ItemDto) dto);
                 item.setId(Long.parseLong(id));
                 itemService.update(item);
-                return ResponseEntity.status(HttpStatus.OK).body(itemMapper.itemToItemDto(item));
+                response = ResponseEntity.status(HttpStatus.OK).body(itemMapper.itemToItemDto(item));
+                break;
         }
-        return ResponseEntity.status(HttpStatus.OK).body(body);
+        return response;
     }
 }
