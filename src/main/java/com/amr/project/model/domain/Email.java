@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 @Builder
 public class Email {
 
-    private String to;
+    private String[] to;
     private String cc;
     private String bcc;
     private String subject;
