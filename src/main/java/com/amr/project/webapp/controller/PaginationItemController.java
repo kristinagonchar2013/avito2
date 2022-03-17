@@ -28,7 +28,7 @@ public class PaginationItemController {
     public ResponseEntity<List<ItemDto>> getAllItem(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "4") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy) {
+            @RequestParam(defaultValue = "rating") String sortBy) {
         List<Item> list = service.getAllItems(pageNo, pageSize, sortBy);
         return new ResponseEntity<List<ItemDto>>(mapper.allItemsToItemsDto(list), new HttpHeaders(), HttpStatus.OK);
     }

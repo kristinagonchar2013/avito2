@@ -23,4 +23,10 @@ public class PaginationItemServiceImpl implements PaginationItemService {
     public List<Item> getAllItems(Integer pageNo, Integer pageSize, String sortBy) {
         return itemDao.getAllItems(pageNo, pageSize, sortBy);
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public <Shop> int getTotalPagesItem(Integer pageNo, Integer pageSize) {
+        return itemDao.getTotalPagesItem(pageNo, pageSize);
+    }
 }

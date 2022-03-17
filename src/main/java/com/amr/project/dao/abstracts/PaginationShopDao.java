@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface PaginationShopDao {
     List<Shop> getAllShops(Integer pageNo, Integer pageSize, String sortBy);
+    <Shop> int getTotalPagesShop(Integer pageNo, Integer pageSize);
 }

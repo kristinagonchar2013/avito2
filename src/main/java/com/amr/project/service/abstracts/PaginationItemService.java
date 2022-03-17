@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface PaginationItemService {
     List<Item> getAllItems(Integer pageNo, Integer pageSize, String sortBy);
+    <Item> int getTotalPagesItem(Integer pageNo, Integer pageSize);
 }

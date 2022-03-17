@@ -28,7 +28,8 @@ public class PaginationShopController {
     public ResponseEntity<List<ShopDto>> getAllShop(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "6") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy) {
+            @RequestParam(defaultValue = "rating") String sortBy) {
+
         List<Shop> list = service.getAllShops(pageNo, pageSize, sortBy);
         return new ResponseEntity<List<ShopDto>>(mapper.allShopsToShopsDto(list), new HttpHeaders(), HttpStatus.OK);
     }
