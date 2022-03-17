@@ -16,8 +16,8 @@ import javax.sql.DataSource;
 public class Email {
 
     private String[] to;
-    private String cc;
-    private String bcc;
+    private String[] cc;
+    private String[] bcc;
     private String subject;
     private String content;
     private DataSource attachment;
