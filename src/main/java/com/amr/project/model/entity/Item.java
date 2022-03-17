@@ -1,5 +1,6 @@
 package com.amr.project.model.entity;
 
+import com.amr.project.model.enums.EstablishedStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,10 +30,7 @@ public class Item {
     private boolean isModerated;
     private String moderatedRejectReason;
     private boolean isPretendedToBeDeleted;
-    enum status {
-        APPROVED,
-        BANNED
-    }
+    private EstablishedStatus establishedStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
