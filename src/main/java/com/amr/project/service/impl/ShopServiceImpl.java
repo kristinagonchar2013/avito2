@@ -19,10 +19,4 @@ public class ShopServiceImpl extends ReadWriteServiceImpl<Shop, Long> implements
         super(dao);
         this.shopDao = dao;
     }
-
-
-    @Override
-    public List<Shop> findAllByStatus(EstablishedStatus establishedStatus) {
-        return dao.findAllByStatus(establishedStatus);
-    }
 }

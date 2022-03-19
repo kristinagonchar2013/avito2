@@ -17,8 +17,4 @@ public class ItemServiceImpl extends ReadWriteServiceImpl<Item, Long> implements
         super(dao);
     }
 
-    @Override
-    public List<Item> findAllByStatus(EstablishedStatus establishedStatus) {
-        return dao.findAllByStatus(establishedStatus);
-    }
 }

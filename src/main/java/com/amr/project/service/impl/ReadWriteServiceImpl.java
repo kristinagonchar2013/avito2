@@ -1,6 +1,7 @@
 package com.amr.project.service.impl;
 
 import com.amr.project.dao.abstracts.ReadWriteDao;
+import com.amr.project.model.enums.EstablishedStatus;
 import com.amr.project.service.abstracts.ReadWriteService;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -61,5 +62,11 @@ public class ReadWriteServiceImpl<T, K> implements ReadWriteService<T, K> {
     @Transactional(readOnly = true)
     public List<T> findAll() {
         return dao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public List<T> findAllByStatus(EstablishedStatus establishedStatus) {
+        return dao.findAllByStatus(establishedStatus);
     }
 }

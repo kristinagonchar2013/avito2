@@ -6,5 +6,4 @@ import com.amr.project.model.enums.EstablishedStatus;
 import java.util.List;
 
 public interface ShopService extends ReadWriteService<Shop, Long> {
-    List<Shop> findAllByStatus(EstablishedStatus establishedStatus);
 }

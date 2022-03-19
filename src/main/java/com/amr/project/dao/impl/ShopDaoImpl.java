@@ -14,11 +14,11 @@ public class ShopDaoImpl extends ReadWriteDaoImpl<Shop, Long> implements ShopDao
 
     @PersistenceContext
     protected EntityManager em;
-
+/*
     @Override
     public List<Shop> findAllByStatus(EstablishedStatus establishedStatus) {
         return em.createQuery("from Shop where establishedStatus =: establishedStatus", Shop.class)
                 .setParameter("establishedStatus", establishedStatus)
                 .getResultList();
-    }
+    }*/
 }
