@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +29,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item {
+public class Item implements Comparable<Item>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -67,4 +68,8 @@ public class Item {
     @JoinColumn(name = "shop_id")
     private Shop shop;
 
+    @Override
+    public int compareTo(@NotNull Item o) {
+        return Double.compare(rating, o.rating);
+    }
 }

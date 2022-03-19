@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -38,13 +39,15 @@ public class MainPageController {
     }
 
 
-    @GetMapping("/main_page")
-    public ResponseEntity<MainPageDto> show (@PathVariable Long id) {
-        List<Shop> shopList = shopService.findAll();//поменяем метод
-        List <Item> itemList = itemService.findAll();//поменяем метод
-        //пагинация пока не готова
+    @GetMapping("/main_page/{id}")
+    public ResponseEntity<MainPageDto> show (@PathVariable Long id,@RequestParam String search) {
+        List<Shop> shopList = shopService.findShops(search);//поменяем метод
+        List <Item> itemList = itemService.findItems(search);//поменяем метод
+        shopList.sort(Shop::compareTo);
+        itemList.sort(Item::compareTo);
         List<Category> categoryList = categoryService.findAll();
         User user = userService.findById(id);
+        //пагинация пока не готова
         return ResponseEntity.ok().body(mainPageMapper.mainPageToMainPageDtoHead(shopList,itemList,categoryList,user));
 
     }

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -16,7 +17,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Shop {
+public class Shop implements Comparable <Shop>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,5 +102,10 @@ public class Shop {
         if (discounts != null) {
             discounts.remove(discount);
         }
+    }
+
+    @Override
+    public int compareTo(@NotNull Shop o) {
+        return Double.compare(rating, o.rating);
     }
 }
