@@ -12,11 +12,12 @@ import java.util.List;
 @Service
 public class ShopServiceImpl extends ReadWriteServiceImpl<Shop, Long> implements ShopService {
 
-    private ShopDao dao;
+    private final ShopDao shopDao;
 
     @Autowired
     public ShopServiceImpl(ShopDao dao) {
         super(dao);
+        this.shopDao = dao;
     }
 
 

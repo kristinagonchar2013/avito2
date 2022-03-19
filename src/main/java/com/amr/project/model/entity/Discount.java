@@ -15,15 +15,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Discount {
-    //TODO скидка для постоянного покупателя
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(name = "min_order")
     private int minOrder;
-    @Column
     private int percentage;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
 }
