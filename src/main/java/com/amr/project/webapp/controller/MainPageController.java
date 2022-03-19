@@ -6,17 +6,15 @@ import com.amr.project.model.entity.Category;
 import com.amr.project.model.entity.Item;
 import com.amr.project.model.entity.Shop;
 import com.amr.project.model.entity.User;
-import com.amr.project.service.abstracts.CategoryService;
-import com.amr.project.service.abstracts.ItemService;
-import com.amr.project.service.abstracts.ShopService;
-import com.amr.project.service.abstracts.UserService;
+import com.amr.project.service.abstracts.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -28,27 +26,40 @@ public class MainPageController {
     private final ItemService itemService;
     private final CategoryService categoryService;
     private final UserService userService;
+    private final PaginationItemService paginationItemService;
+    private final PaginationShopService paginationShopService;
 
     @Autowired
-    public MainPageController(MainPageMapper mainPageMapper, ShopService shopService, ItemService itemService, CategoryService categoryService, UserService userService) {
+    public MainPageController(MainPageMapper mainPageMapper, ShopService shopService, ItemService itemService, CategoryService categoryService, UserService userService, PaginationItemService paginationItemService, PaginationShopService paginationShopService) {
         this.mainPageMapper = mainPageMapper;
         this.shopService = shopService;
         this.itemService = itemService;
         this.categoryService = categoryService;
         this.userService = userService;
+        this.paginationItemService = paginationItemService;
+        this.paginationShopService = paginationShopService;
     }
 
 
     @GetMapping("/main_page/{id}")
-    public ResponseEntity<MainPageDto> show (@PathVariable Long id,@RequestParam String search) {
-        List<Shop> shopList = shopService.findShops(search);//поменяем метод
-        List <Item> itemList = itemService.findItems(search);//поменяем метод
+    public ResponseEntity<MainPageDto> showMainPage (@PathVariable Long id, @RequestParam String search) {
+        List<Shop> shopList = shopService.findShops(search);
+        List <Item> itemList = itemService.findItems(search);
         shopList.sort(Shop::compareTo);
-        itemList.sort(Item::compareTo);
         List<Category> categoryList = categoryService.findAll();
         User user = userService.findById(id);
-        //пагинация пока не готова
         return ResponseEntity.ok().body(mainPageMapper.mainPageToMainPageDtoHead(shopList,itemList,categoryList,user));
-
+    }
+    @GetMapping("/main_page/shop")
+    public ResponseEntity<Integer> getTotalPageShop(@RequestParam(defaultValue = "0") Integer pageNo,
+                                                    @RequestParam(defaultValue = "6") Integer pageSize) {
+        int page = paginationShopService.getTotalPagesShop(pageNo, pageSize);
+        return new ResponseEntity<Integer>(page, new HttpHeaders(), HttpStatus.OK);
+    }
+    @GetMapping("/main_page/item")
+    public ResponseEntity<Integer> getTotalPageItem(@RequestParam(defaultValue = "0") Integer pageNo,
+                                                    @RequestParam(defaultValue = "4") Integer pageSize) {
+        int page = paginationItemService.getTotalPagesItem(pageNo, pageSize);
+        return new ResponseEntity<Integer>(page, new HttpHeaders(), HttpStatus.OK);
     }
 }

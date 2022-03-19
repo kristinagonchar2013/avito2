@@ -1,7 +1,8 @@
 package com.amr.project.model.dto;
 
-import com.amr.project.model.entity.Item;
-import com.amr.project.model.entity.Shop;
+
+import com.amr.project.model.entity.User;
+import lombok.Data;
 
 import java.util.List;
 
