@@ -40,7 +40,6 @@ public class AdminRESTController {
         } else if (obj.equals(ItemDto.class)) {
             itemService.update(itemMapper.itemDtoToItem((ItemDto)obj));
         }
-
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
