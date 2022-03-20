@@ -24,19 +24,19 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getOne(@PathVariable Long id) {
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         User user = userService.findById(id);
         return ResponseEntity.ok(userMapper.userToUserDto(user));
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createShop(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         userService.persist(userMapper.userDtoToUser(userDto));
         return ResponseEntity.status(HttpStatus.CREATED).body(userDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateShop(@RequestBody UserDto userDto, @PathVariable Long id) {
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable Long id) {
         User user = userMapper.userDtoToUser(userDto);
         user.setId(id);
         if (user.getPassword().isEmpty()) {
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteShopById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUserById(@PathVariable Long id) {
         userService.delete(userService.findById(id));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
