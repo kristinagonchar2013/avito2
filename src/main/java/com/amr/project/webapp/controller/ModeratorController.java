@@ -31,7 +31,8 @@ public class ModeratorController {
     private final ItemService itemService;
 
     @Autowired
-    public ModeratorController(UserMapper userMapper, ShopMapper shopMapper, ItemMapper itemMapper, UserService userService, ShopService shopService, ItemService itemService) {
+    public ModeratorController(UserMapper userMapper, ShopMapper shopMapper, ItemMapper itemMapper,
+                               UserService userService, ShopService shopService, ItemService itemService) {
         this.userMapper = userMapper;
         this.shopMapper = shopMapper;
         this.itemMapper = itemMapper;
