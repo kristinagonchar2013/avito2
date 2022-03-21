@@ -6,4 +6,5 @@ import com.amr.project.model.enums.EstablishedStatus;
 import java.util.List;
 
 public interface ItemDao extends ReadWriteDao<Item, Long> {
+    List<Item> findItems(String keyword);
 }

@@ -6,4 +6,5 @@ import com.amr.project.model.enums.EstablishedStatus;
 import java.util.List;
 
 public interface ItemService extends ReadWriteService<Item, Long> {
+    List<Item> findItems(String keyword);
 }

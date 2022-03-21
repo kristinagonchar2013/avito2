@@ -11,10 +11,14 @@ import java.util.List;
 
 @Service
 public class ItemServiceImpl extends ReadWriteServiceImpl<Item, Long> implements ItemService {
-    private ItemDao dao;
-    @Autowired
-    public ItemServiceImpl(ItemDao dao) {
-        super(dao);
-    }
+    private final ItemDao itemDao;
 
+    public ItemServiceImpl(ItemDao itemDao) {
+        super(itemDao);
+        this.itemDao = itemDao;
+    }
+    @Override
+    public List<Item> findItems(String keyword) {
+        return itemDao.findItems(keyword);
+    }
 }

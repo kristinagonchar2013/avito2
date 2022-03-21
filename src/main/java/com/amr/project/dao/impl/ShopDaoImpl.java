@@ -14,4 +14,10 @@ public class ShopDaoImpl extends ReadWriteDaoImpl<Shop, Long> implements ShopDao
 
     @PersistenceContext
     protected EntityManager em;
+    @Override
+    public List<Shop> findShops(String keyword) {
+        return em.createQuery("SELECT s FROM Shop s WHERE s.name LIKE CONCAT('%', :keyword, '%') AND s.status = 'approved' ORDER BY s.rating DESC", Shop.class)
+                .setParameter("keyword", keyword)
+                .getResultList();
+    }
 }
