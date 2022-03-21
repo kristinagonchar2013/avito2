@@ -92,4 +92,11 @@ public class ModeratorController {
         }
         return response;
     }
+
+    @PutMapping("/registration/{id}")
+    public ResponseEntity<ShopDto> registerShop(@PathVariable Long id) {
+        Shop registerShop = shopService.findById(id);
+        registerShop.setModerateAccept(true);
+        return ResponseEntity.ok(shopMapper.shopToShopDto(registerShop));
+    }
 }
