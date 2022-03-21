@@ -17,11 +17,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final LoginSuccessHandler loginSuccessHandler;
+
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(LoginSuccessHandler loginSuccessHandler, UserDetailsService userDetailsService) {
-        this.loginSuccessHandler = loginSuccessHandler;
+    public SecurityConfig(  UserDetailsService userDetailsService) {
+
         this.userDetailsService = userDetailsService;
     }
     @Autowired
@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
-                .successHandler(loginSuccessHandler)
+
                 .loginProcessingUrl("/login")
                 .usernameParameter("j_username")
                 .passwordParameter("j_password")
