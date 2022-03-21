@@ -12,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,15 +45,14 @@ public class MainPageController {
     }
 
 
-    @GetMapping("/main_page/{id}")
-    public ResponseEntity<MainPageDto> showMainPage (@PathVariable Long id,
-                                                     @RequestParam(defaultValue = "0") Integer pageNo,
+    @GetMapping("/main_page/{pageNo}/{pageSize}")
+    public ResponseEntity<MainPageDto> showMainPage( @RequestParam(defaultValue = "0") Integer pageNo,
                                                      @RequestParam(defaultValue = "4") Integer pageSize,
                                                      @RequestParam(defaultValue = "rating") String sortBy) {
         List<Shop> shopList = paginationShopService.getAllShops(pageNo, pageSize, sortBy);
         List <Item> itemList = paginationItemService.getAllItems(pageNo, pageSize, sortBy);
         List<Category> categoryList = categoryService.findAll();
-        User user = userService.findById(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return ResponseEntity.ok().body(mainPageMapper.mainPageToMainPageDtoHead(shopList,itemList,categoryList,user));
     }
 
