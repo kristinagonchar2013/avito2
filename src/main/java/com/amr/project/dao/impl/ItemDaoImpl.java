@@ -9,8 +9,4 @@ import java.util.List;
 
 @Repository
 public class ItemDaoImpl extends ReadWriteDaoImpl<Item, Long> implements ItemDao {
-    @Override
-    public List<Item> findAllByStatus(EstablishedStatus establishedStatus) {
-        return null;
-    }
 }

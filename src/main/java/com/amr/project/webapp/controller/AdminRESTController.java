@@ -34,7 +34,6 @@ public class AdminRESTController {
 
     @PostMapping("/setStatus")
     public ResponseEntity setStatus(@RequestParam Object obj) {
-
         if (obj.equals(ShopDto.class)) {
             shopService.update(shopMapper.shopDtoToShop((ShopDto)obj));
         } else if (obj.equals(ItemDto.class)) {
