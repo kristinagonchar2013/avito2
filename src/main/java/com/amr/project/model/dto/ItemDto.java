@@ -20,4 +20,5 @@ public class ItemDto {
     private List<ImageDto> images;
     private List<ReviewDto> reviews;
     private ShopDto shop;
+    private String status;
 }

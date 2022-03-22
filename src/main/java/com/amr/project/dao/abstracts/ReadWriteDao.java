@@ -1,5 +1,7 @@
 package com.amr.project.dao.abstracts;
 
+import com.amr.project.model.enums.EstablishedStatus;
+
 import java.util.List;
 
 public interface ReadWriteDao<T, K> {
@@ -19,4 +21,6 @@ public interface ReadWriteDao<T, K> {
     T findById(K id);
 
     List<T> findAll();
+
+    List<T> findAllByStatus(EstablishedStatus establishedStatus);
 }

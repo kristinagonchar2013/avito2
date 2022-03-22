@@ -1,5 +1,6 @@
 package com.amr.project.model.entity;
 
+import com.amr.project.model.enums.EstablishedStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,6 +39,7 @@ public class Shop {
 
     @Column(name = "is_pretendent_be_deleted")
     private boolean isPretendentToBeDeleted;
+    private EstablishedStatus establishedStatus;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id")

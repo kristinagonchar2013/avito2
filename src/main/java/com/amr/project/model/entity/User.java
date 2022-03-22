@@ -76,8 +76,7 @@ public class User implements UserDetails {
     @JoinTable(name = "user_chat",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "chat_id"))
-    private List<Chat> chats;
-
+    private Set<Chat> chats;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

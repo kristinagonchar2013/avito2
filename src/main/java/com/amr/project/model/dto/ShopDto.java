@@ -22,4 +22,5 @@ public class ShopDto {
     private ImageDto logo;
     private List<DiscountDto> discounts;
     private CityDto location;
+    private String status;
 }

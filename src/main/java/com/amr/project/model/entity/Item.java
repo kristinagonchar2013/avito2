@@ -1,5 +1,6 @@
 package com.amr.project.model.entity;
 
+import com.amr.project.model.enums.EstablishedStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -50,6 +51,7 @@ public class Item {
 
     @Column(name = "is_pretended_to_be_deleted")
     private boolean isPretendedToBeDeleted;
+    private EstablishedStatus establishedStatus;
 
     @Singular
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
