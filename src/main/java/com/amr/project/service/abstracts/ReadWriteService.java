@@ -1,5 +1,7 @@
 package com.amr.project.service.abstracts;
 
+import com.amr.project.model.enums.EstablishedStatus;
+
 import java.util.List;
 
 public interface ReadWriteService<T, K> {
@@ -19,4 +21,6 @@ public interface ReadWriteService<T, K> {
     T findById(K id);
 
     List<T> findAll();
+
+    List<T> findAllByStatus(EstablishedStatus establishedStatus);
 }
