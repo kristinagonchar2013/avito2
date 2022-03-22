@@ -12,4 +12,5 @@ public interface MessageMapper {
     Message messageDtoToMessage(MessageDto messageDto);
     MessageDto messageToMessageDto(Message message);
     List<MessageDto> listOfMessageToMessageDto(List<Message> list);
+    MessageDto activationMessageToMessageDto (String message);
 }

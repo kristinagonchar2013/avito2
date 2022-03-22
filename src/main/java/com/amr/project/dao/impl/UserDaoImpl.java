@@ -9,15 +9,11 @@ import javax.persistence.PersistenceContext;
 
 @Repository
 public class UserDaoImpl extends ReadWriteDaoImpl<User, Long> implements UserDao {
-    @PersistenceContext
-    EntityManager entityManager;
 
     @Override
     public User findByActivationCode(String code) {
-        User user = entityManager.createQuery("SELECT u FROM User u WHERE u.activationCode =: activationCode", User.class)
+        User user = em.createQuery("SELECT u FROM User u WHERE u.activationCode =: activationCode", User.class)
                 .setParameter("activationCode", code).getSingleResult();
         return user;
     }
-
-
 }
