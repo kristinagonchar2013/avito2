@@ -1,6 +1,9 @@
 package com.amr.project.dao.impl;
 
 import com.amr.project.dao.abstracts.ReadWriteDao;
+import com.amr.project.model.entity.Shop;
+import com.amr.project.model.enums.EstablishedStatus;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -60,6 +63,13 @@ public class ReadWriteDaoImpl<T, K> implements ReadWriteDao<T, K> {
     @Override
     public List<T> findAll() {
         return em.createQuery("select u from " + clazz.getName() + " u", clazz)
+                .getResultList();
+    }
+
+    @Override
+    public List<T> findAllByStatus(EstablishedStatus establishedStatus) {
+        return em.createQuery("select u from " + clazz.getName() + " u where u.establishedStatus =: establishedStatus", clazz)
+                .setParameter("establishedStatus", establishedStatus)
                 .getResultList();
     }
 }
