@@ -4,6 +4,8 @@ import com.amr.project.converter.ShopMapper;
 import com.amr.project.model.dto.ShopDto;
 import com.amr.project.model.entity.Shop;
 import com.amr.project.service.abstracts.ShopService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/shop")
+@Tag(name = "Shop Rest Controller", description = "Контроллер для CRUD операций с магазином")
 public class ShopController {
 
     private final ShopMapper mapper;
@@ -25,9 +28,16 @@ public class ShopController {
     }
 
     @GetMapping
+    @Operation(description = "Вывод всех магазинов")
     public ResponseEntity<List<ShopDto>> findAll() {
         List<Shop> list = service.findAll();
         return ResponseEntity.ok(mapper.allShopsToShopsDto(list));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ShopDto> getOneShop(@PathVariable Long id) {
+        Shop shop = service.findById(id);
+        return ResponseEntity.ok(mapper.shopToShopDto(shop));
     }
 
     @PostMapping
