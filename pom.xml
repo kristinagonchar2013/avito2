@@ -233,8 +233,6 @@
             <version>2.0.5.RELEASE</version>
             <scope>test</scope>
         </dependency>
-
-
         <!--для валидации при регистрации        -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
@@ -251,7 +249,6 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -280,5 +277,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
