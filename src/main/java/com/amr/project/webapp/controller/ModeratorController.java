@@ -41,51 +41,47 @@ public class ModeratorController {
         this.itemService = itemService;
     }
 
-    @DeleteMapping("/delete")
-    ResponseEntity deleteById(@RequestParam Map<String, String> request) {
-        String nameEntity = request.get("nameEntity");
-        String id = request.get("id");
+    @DeleteMapping("/delete/{nameEntity}/{id}")
+    ResponseEntity deleteById(@PathVariable Long id, @PathVariable String nameEntity) {
         switch (nameEntity) {
             case "user":
-                User user = userService.findById(Long.parseLong(id));
+                User user = userService.findById(id);
                 user.setPretendedToBeDeleted(true);
                 break;
             case "shop":
-                Shop shop = shopService.findById(Long.parseLong(id));
+                Shop shop = shopService.findById(id);
                 shop.setPretendentToBeDeleted(true);
                 break;
             case "item":
-                Item item = itemService.findById(Long.parseLong(id));
+                Item item = itemService.findById(id);
                 item.setPretendedToBeDeleted(true);
                 break;
         }
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PutMapping("/edit")
-    public ResponseEntity<?> update(@RequestBody Object dto, @RequestParam Map<String, String> request) {
-        String nameEntity = request.get("nameEntity");
-        String id = request.get("id");
+    @PutMapping("/edit/{nameEntity}/{id}")
+    public ResponseEntity<?> update(@RequestBody Object dto, @PathVariable Long id, @PathVariable String nameEntity) {
         ResponseEntity response = null;
         switch (nameEntity) {
             case "user":
                 User user = userMapper.userDtoToUser((UserDto) dto);
-                user.setId(Long.parseLong(id));
+                user.setId(id);
                 if (user.getPassword().isEmpty()) {
-                    user.setPassword(userService.findById(Long.parseLong(id)).getPassword());
+                    user.setPassword(userService.findById(id).getPassword());
                 }
                 userService.update(user);
                 response = ResponseEntity.status(HttpStatus.OK).body(userMapper.userToUserDto(user));
                 break;
             case "shop":
                 Shop shop = shopMapper.shopDtoToShop((ShopDto) dto);
-                shop.setId(Long.parseLong(id));
+                shop.setId(id);
                 shopService.update(shop);
                 response = ResponseEntity.status(HttpStatus.OK).body(shopMapper.shopToShopDto(shop));
                 break;
             case "item":
                 Item item = itemMapper.itemDtoToItem((ItemDto) dto);
-                item.setId(Long.parseLong(id));
+                item.setId(id);
                 itemService.update(item);
                 response = ResponseEntity.status(HttpStatus.OK).body(itemMapper.itemToItemDto(item));
                 break;
