@@ -4,7 +4,6 @@ import com.amr.project.dao.abstracts.ReadWriteDao;
 import com.amr.project.dao.abstracts.UserDao;
 import com.amr.project.model.entity.User;
 import com.amr.project.service.abstracts.EmailService;
-import com.amr.project.service.abstracts.MailSenderService;
 import com.amr.project.service.abstracts.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

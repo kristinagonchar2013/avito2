@@ -2,7 +2,6 @@ package com.amr.project.service.impl;
 
 import com.amr.project.model.domain.Email;
 import com.amr.project.service.abstracts.EmailService;
-import com.amr.project.service.abstracts.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
