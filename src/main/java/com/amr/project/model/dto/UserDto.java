@@ -2,9 +2,16 @@ package com.amr.project.model.dto;
 
 
 import com.amr.project.model.enums.Gender;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Calendar;
 import java.util.List;
 
+@Schema(description = "Пользователь")
+@Data
+@NoArgsConstructor
 public class UserDto {
     private Long id;
     private String email;
@@ -21,6 +28,6 @@ public class UserDto {
     private List<CouponDto> coupons;
     private List<OrderDto> orders;
     private List<ShopDto> shops;
-    private List<FavoriteDto> favorite;
+    private FavoriteDto favorite;
     private List<DiscountDto> discounts;
 }

@@ -1,11 +1,13 @@
 package com.amr.project.model.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Schema(description = "Товар")
 @Data
 @NoArgsConstructor
 public class ItemDto {

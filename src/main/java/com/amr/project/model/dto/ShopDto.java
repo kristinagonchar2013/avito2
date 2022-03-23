@@ -1,14 +1,16 @@
 package com.amr.project.model.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import java.util.List;
 
+@Schema(description = "Магазин")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString(of = {"name", "email", "phone", "location"})
-@EqualsAndHashCode(of = {"id", "name"})
+@EqualsAndHashCode(of = {"id", "name", "email"})
 public class ShopDto {
 
     private Long id;
