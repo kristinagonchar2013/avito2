@@ -89,10 +89,10 @@ public class ModeratorController {
         return response;
     }
 
-    @PutMapping("/registration/{id}")
-    public ResponseEntity<ShopDto> registerShop(@PathVariable Long id) {
+    @PostMapping("/registration/{id}")
+    public ResponseEntity<ShopDto> acceptShop(@PathVariable Long id, @RequestParam boolean acceptance) {
         Shop registerShop = shopService.findById(id);
-        registerShop.setModerateAccept(true);
+        registerShop.setModerateAccept(acceptance);
         return ResponseEntity.ok(shopMapper.shopToShopDto(registerShop));
     }
 }
