@@ -2,9 +2,17 @@ package com.amr.project.model.dto;
 
 
 import com.amr.project.model.enums.Gender;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Calendar;
 import java.util.List;
 
+@Data
+@Getter
+@Setter
 public class UserDto {
     private Long id;
     private String email;
@@ -23,4 +31,5 @@ public class UserDto {
     private List<ShopDto> shops;
     private List<FavoriteDto> favorite;
     private List<DiscountDto> discounts;
+
 }

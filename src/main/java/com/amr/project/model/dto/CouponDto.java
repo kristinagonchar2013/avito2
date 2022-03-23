@@ -1,5 +1,8 @@
 package com.amr.project.model.dto;
 
+import lombok.Data;
+
+@Data
 public class CouponDto {
 
     private Long id;
