@@ -42,7 +42,7 @@ public class ModeratorController {
     }
 
     @DeleteMapping("/delete/{nameEntity}/{id}")
-    ResponseEntity deleteById(@PathVariable Long id, @PathVariable String nameEntity) {
+    ResponseEntity<Void> deleteById(@PathVariable Long id, @PathVariable String nameEntity) {
         switch (nameEntity) {
             case "user":
                 User user = userService.findById(id);
@@ -62,7 +62,7 @@ public class ModeratorController {
 
     @PutMapping("/edit/{nameEntity}/{id}")
     public ResponseEntity<?> update(@RequestBody Object dto, @PathVariable Long id, @PathVariable String nameEntity) {
-        ResponseEntity response = null;
+        ResponseEntity<?> response = null;
         switch (nameEntity) {
             case "user":
                 User user = userMapper.userDtoToUser((UserDto) dto);
