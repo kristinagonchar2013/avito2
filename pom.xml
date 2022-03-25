@@ -206,21 +206,9 @@
             <version>1.1</version>
         </dependency>
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>3.0.0</version>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.6</version>
         </dependency>
         <dependency>
             <groupId>com.qiwi</groupId>
@@ -233,8 +221,6 @@
             <version>2.0.5.RELEASE</version>
             <scope>test</scope>
         </dependency>
-
-
         <!--для валидации при регистрации        -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
@@ -251,7 +237,6 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -280,5 +265,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

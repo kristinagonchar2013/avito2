@@ -3,17 +3,16 @@ package com.amr.project.model.dto;
 import com.amr.project.model.enums.Gender;
 import com.amr.project.model.enums.Role;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 
+@Schema(description = "Пользователь")
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 public class UserDto {
     private Long id;

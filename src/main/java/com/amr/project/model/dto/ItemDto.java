@@ -1,5 +1,6 @@
 package com.amr.project.model.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import com.amr.project.model.enums.EstablishedStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
+@Schema(description = "Товар")
 @Data
 @NoArgsConstructor
 public class ItemDto {
