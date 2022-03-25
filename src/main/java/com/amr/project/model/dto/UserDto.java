@@ -31,6 +31,6 @@ public class UserDto {
     private List<CouponDto> coupons;
     private List<OrderDto> orders;
     private List<ShopDto> shops;
-    private List<FavoriteDto> favorite;
+    private FavoriteDto favorite;
     private List<DiscountDto> discounts;
 }
