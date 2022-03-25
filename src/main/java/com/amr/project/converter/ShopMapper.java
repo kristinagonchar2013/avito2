@@ -8,8 +8,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ShopMapper {
-
     ShopDto shopToShopDto(Shop shop);
+
     Shop shopDtoToShop(ShopDto shopDto);
+
     List<ShopDto> allShopsToShopsDto(List<Shop> shopList);
 }

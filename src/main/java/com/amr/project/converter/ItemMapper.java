@@ -8,8 +8,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ItemMapper {
-
     ItemDto itemToItemDto(Item item);
+
     Item itemDtoToItem(ItemDto itemDto);
+
     List<ItemDto> allItemsToItemsDto(List<Item> itemList);
 }

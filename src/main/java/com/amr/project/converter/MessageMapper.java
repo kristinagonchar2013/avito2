@@ -8,8 +8,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface MessageMapper {
-
     Message messageDtoToMessage(MessageDto messageDto);
+
     MessageDto messageToMessageDto(Message message);
+
     List<MessageDto> listOfMessageToMessageDto(List<Message> list);
 }

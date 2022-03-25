@@ -8,8 +8,9 @@ import java.util.Set;
 
 @Mapper(componentModel = "spring")
 public interface ChatMapper {
-
     Chat chatDtoToChat(ChatDto chatDto);
+
     ChatDto chatToChatDto(Chat chat);
+
     Set<ChatDto> setOfChatToChatDto(Set<Chat> chatSet);
 }

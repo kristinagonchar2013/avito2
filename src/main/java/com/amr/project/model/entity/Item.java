@@ -52,6 +52,7 @@ public class Item implements Comparable<Item>{
 
     @Column(name = "is_pretended_to_be_deleted")
     private boolean isPretendedToBeDeleted;
+
     private EstablishedStatus establishedStatus;
 
     @Singular

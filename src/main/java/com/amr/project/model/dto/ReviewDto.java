@@ -18,5 +18,10 @@ public class ReviewDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date date;
     private int rating;
-    private String username;
+    private boolean isModerated;
+    private boolean isModerateAccept;
+    private String moderatedRejectReason;
+    private ItemDto item;
+    private UserDto user;
+    private ShopDto shop;
 }

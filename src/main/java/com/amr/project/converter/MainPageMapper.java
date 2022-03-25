@@ -1,6 +1,10 @@
 package com.amr.project.converter;
 
-import com.amr.project.model.dto.*;
+import com.amr.project.model.dto.CategoryDto;
+import com.amr.project.model.dto.ItemDto;
+import com.amr.project.model.dto.MainPageDto;
+import com.amr.project.model.dto.ShopDto;
+import com.amr.project.model.dto.UserDto;
 import com.amr.project.model.entity.Category;
 import com.amr.project.model.entity.Item;
 import com.amr.project.model.entity.Shop;
@@ -20,12 +24,15 @@ public interface MainPageMapper {
     }
 
     List<ShopDto> shopsToShopDtos(List<Shop> shopList);
+
     List<ItemDto> itemsToItemDtos(List<Item> items);
-    List<CategoryDto>categoryesToCategoryDtos(List<Category>categoryList);
-    User userToUserDtos(User user);
+
+    List<CategoryDto> categoryesToCategoryDtos(List<Category> categoryList);
+
+    UserDto userToUserDtos(User user);
 
     default MainPageDto mainPageToMainPageDtoHead(List<Shop> shopList, List<Item> itemList,
-                                          List<Category> categoryList, User user) {
+                                                  List<Category> categoryList, User user) {
         MainPageDto mainPageDto = new MainPageDto();
         mainPageDto.setItemList(itemsToItemDtos(itemList));
         mainPageDto.setShopList(shopsToShopDtos(shopList));
