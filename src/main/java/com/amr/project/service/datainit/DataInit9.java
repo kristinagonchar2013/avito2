@@ -27,7 +27,7 @@ public class DataInit9 {
         this.addressService = addressService;
     }
 
-   /* @PostConstruct
+   @PostConstruct
     private void orderDataInit() {
         orderService.persist(Order.builder()
                 .date(new GregorianCalendar(2021, Calendar.MAY, 12)).status(Status.COMPLETE)
@@ -127,5 +127,5 @@ public class DataInit9 {
                 .address(addressService.findById(1L))
                 .user(userService.findById(4L))
                 .build());
-    }*/
+    }
 }

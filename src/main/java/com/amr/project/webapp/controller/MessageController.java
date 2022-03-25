@@ -39,14 +39,14 @@ public class MessageController {
                 , "/user/chat", messageDto);
     }
 
-    @GetMapping("/activation/{code}")
-    public ResponseEntity<MessageDto> activate(@PathVariable String code) {
-        boolean isActivated = userService.activateUser(code);
-        String message;
-        if (isActivated) {
-            message = "User successfully activated";
-        } else
-            message = "Activation code is not found";
-        return ResponseEntity.ok (messageMapper.activationMessageToMessageDto(message));
-    }
+//    @GetMapping("/activation/{code}")
+//    public ResponseEntity<MessageDto> activate(@PathVariable String code) {
+//        boolean isActivated = userService.activateUser(code);
+//        String message;
+//        if (isActivated) {
+//            message = "User successfully activated";
+//        } else
+//            message = "Activation code is not found";
+//        return ResponseEntity.ok (messageMapper.activationMessageToMessageDto(message));
+//    }
 }

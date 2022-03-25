@@ -14,35 +14,35 @@ import java.util.UUID;
 public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements UserService {
 
     private final UserDao userDao;
-    private final EmailService emailService;
+//    private final EmailService emailService;
 
     @Autowired
-    public UserServiceImpl(ReadWriteDao<User, Long> dao, UserDao userDao, EmailService emailService) {
+    public UserServiceImpl(ReadWriteDao<User, Long> dao, UserDao userDao) {
         super(dao);
         this.userDao = userDao;
-        this.emailService = emailService;
+//        this.emailService = emailService;
     }
+//
+//    @Override todo когда активация понадобится
+//    public boolean activateUser(String code) {
+//        User user = userDao.findByActivationCode(code);
+//        if (user == null) {
+//            return false;
+//        }
+//        user.setActivate(true);
+//        user.setActivationCode(null);
+//        return true;
+//    }
 
-    @Override
-    public boolean activateUser(String code) {
-        User user = userDao.findByActivationCode(code);
-        if (user == null) {
-            return false;
-        }
-        user.setActivate(true);
-        user.setActivationCode(null);
-        return true;
-    }
-
-    @Override
-    public User persist(User user) {
-        user.setActivate(false);
-        user.setActivationCode(UUID.randomUUID().toString());
-        String message = String.format("Dear %s, welcome to avito. Please visit the next link: http://localhost:8080/activate/%s to activate your account",
-                user.getUsername(),
-                user.getActivationCode());
-        emailService.sendMailActivation(user.getEmail(), "Activation code", message);
-        return this.persist(user);
-    }
+//    @Override
+//    public User persist(User user) {
+//        user.setActivate(false);
+//        user.setActivationCode(UUID.randomUUID().toString());
+//        String message = String.format("Dear %s, welcome to avito. Please visit the next link: http://localhost:8080/activate/%s to activate your account",
+//                user.getUsername(),
+//                user.getActivationCode());
+//        emailService.sendMailActivation(user.getEmail(), "Activation code", message);
+//        return this.persist(user);
+//    }
 }
 

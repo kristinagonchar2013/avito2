@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -22,7 +23,7 @@ import java.util.Calendar;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 @Data
 @Builder
 @AllArgsConstructor
@@ -46,5 +47,6 @@ public class Order {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
+    @Singular
     private List<Item> items;
 }
