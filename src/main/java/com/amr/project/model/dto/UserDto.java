@@ -2,6 +2,9 @@ package com.amr.project.model.dto;
 
 
 import com.amr.project.model.enums.Gender;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +31,6 @@ public class UserDto {
     private List<CouponDto> coupons;
     private List<OrderDto> orders;
     private List<ShopDto> shops;
-    private FavoriteDto favorite;
+    private List<FavoriteDto> favorite;
     private List<DiscountDto> discounts;
 }
