@@ -48,7 +48,7 @@ public class DataInit1 {
                 .username("admin").password("admin")
                 .activate(true).activationCode("admin")
                 .phone("1111111").firstName("admin").lastName("admin").age(30).gender(Gender.MALE)
-                .role(Role.ADMINISTRATOR)
+                .role(Role.ADMIN)
                 .birthday(new GregorianCalendar(1991, Calendar.MAY, 9))
                 .build());
 
