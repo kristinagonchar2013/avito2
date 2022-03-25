@@ -3,13 +3,14 @@ package com.amr.project.model.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class FavoriteDto {
+public class FeedbackDTO {
     private Long id;
-    private List<ItemDto> items;
-    private List<ShopDto> shops;
+    private String reason;
+    private String fullText;
+    private LocalDateTime dateTime;
     private UserDto user;
 }

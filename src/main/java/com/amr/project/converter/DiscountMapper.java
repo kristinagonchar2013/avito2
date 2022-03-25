@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface DiscountMapper {
-
     DiscountDto discountToDiscountDto(Discount discount);
+
     Discount discountDtoToDiscount(DiscountDto discountDto);
 }
