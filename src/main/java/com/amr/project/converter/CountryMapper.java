@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface CountryMapper {
-
     CountryDto countryToCountryDto(Country country);
+
     Country countryDtoToCountry(CountryDto countryDto);
 }
