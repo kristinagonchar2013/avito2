@@ -3,12 +3,9 @@ package com.amr.project.service.impl;
 import com.amr.project.dao.abstracts.ReadWriteDao;
 import com.amr.project.dao.abstracts.UserDao;
 import com.amr.project.model.entity.User;
-import com.amr.project.service.abstracts.EmailService;
 import com.amr.project.service.abstracts.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements UserService {
